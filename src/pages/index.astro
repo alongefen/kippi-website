@@ -13,45 +13,41 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
     <!-- ==================== §A HERO ==================== -->
     <!--
-      Mobile stacking order: headline (1) → pocket (2) → subcopy + form (3)
-      Desktop: two-column [copy-col | pocket] side by side
-      We achieve mobile order by splitting the copy column into two halves
-      (hero-copy-top = headline; hero-copy-bottom = subcopy+form) and using
-      CSS flex order to interleave the pocket between them on mobile.
+      Mobile: headline -> Kippi -> subcopy+form (stacked)
+      Desktop: two-column grid [copy | Kippi] side by side
+      Kippi is a transparent RGBA cutout — grounded by contact shadow + warm glow.
     -->
     <section class="section-hero" aria-label="Hero">
       <div class="hero-inner">
 
-        <!-- HEADLINE — order 1 on mobile, part of left col on desktop -->
+        <!-- HEADLINE — order 1 on mobile -->
         <div class="hero-copy-top">
           <h1 class="hero-headline font-display" data-reveal>
             There's a moment right before it all goes.
           </h1>
         </div>
 
-        <!-- POCKET — order 2 on mobile, right col on desktop -->
-        <div class="hero-pocket" aria-label="Kippi resting in her warm burrow">
-          <!-- Warm amber radial glow — bleeds warmth into the cream page -->
-          <div class="pocket-glow" aria-hidden="true"></div>
-          <!-- Candle-flicker: very subtle opacity variation on the glow -->
-          <div class="pocket-flicker" aria-hidden="true"></div>
-          <!-- Scene: edges dissolved via radial mask. No hard card border. -->
-          <div class="pocket-scene">
-            <div class="pocket-breathe">
-              <img
-                src="/mascot/kippi-recline.png"
-                alt="Kippi resting in her warm candlelit burrow"
-                width="560"
-                height="560"
-                loading="eager"
-                fetchpriority="high"
-                class="pocket-img"
-              />
-            </div>
+        <!-- KIPPI HERO — order 2 on mobile, right col on desktop -->
+        <div class="hero-kippi-wrap" aria-label="Kippi, seated and present">
+          <!-- Warm radial glow pool — the light Kippi sits in -->
+          <div class="kippi-glow" aria-hidden="true"></div>
+          <!-- Contact shadow — Kippi rests ON the surface -->
+          <div class="kippi-shadow" aria-hidden="true"></div>
+          <!-- The character, breathing -->
+          <div class="kippi-breathe">
+            <img
+              src="/mascot/kippi-v2-hero-seated-cut.png"
+              alt="Kippi the hedgehog, seated and calm, waiting with you"
+              width="520"
+              height="520"
+              loading="eager"
+              fetchpriority="high"
+              class="kippi-hero-img"
+            />
           </div>
         </div>
 
-        <!-- SUBCOPY + FORM — order 3 on mobile, bottom of left col on desktop -->
+        <!-- SUBCOPY + FORM — order 3 on mobile -->
         <div class="hero-copy-bottom">
           <p class="hero-subcopy" data-reveal>
             You ate one thing you weren't planning to. Or the day just wore you down.
@@ -73,7 +69,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     </section>
 
     <!-- ==================== §B THE LOOP ==================== -->
-    <!-- Warm cream with bg-surface. No mascot. Copy breathes with white space. -->
+    <!-- Richer warm cream. No mascot. Copy breathes. -->
     <section class="section-b" aria-label="The loop">
       <div class="section-inner">
         <h2 class="section-headline font-display" data-reveal>
@@ -105,7 +101,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     </section>
 
     <!-- ==================== §C WHAT KIPPI DOES ==================== -->
-    <!-- Cream bg-elevated band. Split: copy | phone/chat visual. -->
+    <!-- Warmer bg-elevated. Split: copy | phone visual. -->
     <section class="section-c" aria-label="What Kippi does">
       <div class="section-inner section-inner--split">
 
@@ -129,7 +125,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
         </div>
 
         <div class="split-visual" data-reveal aria-label="Chat preview">
-          <!-- Phone frame: restyled for light palette -->
           <div class="phone-frame" role="img" aria-label="Kippi chat interface showing a warm conversation">
             <div class="phone-screen">
               <div class="chat-header">
@@ -161,17 +156,41 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       </div>
     </section>
 
-    <!-- ==================== BRIDGE: cream to dark ==================== -->
-    <div class="bridge bridge--to-dark" aria-hidden="true"></div>
+    <!-- ==================== BRIDGE: cream to dark + PEEKING KIPPI ==================== -->
+    <!--
+      Peeking Kippi tucks at the section edge so she peeks INTO the dark band below.
+      She's positioned absolute at the bottom of the bridge, overlapping the §D boundary.
+      The contact shadow appears on the dark side — she's resting on the edge.
+    -->
+    <div class="bridge bridge--to-dark" aria-hidden="true">
+      <div class="peek-wrap" aria-label="Kippi peeking into the next section">
+        <div class="peek-glow" aria-hidden="true"></div>
+        <div class="peek-shadow" aria-hidden="true"></div>
+        <div class="peek-breathe">
+          <img
+            src="/mascot/kippi-v2-peeking-cut.png"
+            alt="Kippi peering around the corner, curious"
+            width="160"
+            height="160"
+            loading="lazy"
+            class="peek-img"
+          />
+        </div>
+      </div>
+    </div>
 
     <!-- ==================== §D RELAPSE IS RECOVERY ==================== -->
-    <!-- THE one dark band. Warm Dark #1C1410. Moss accent. Small immersed Kippi optional. -->
+    <!-- THE one dark band. Richer candlelight glow. Moss accent. Kippi peeks from above. -->
     <section class="section-d section-dark" aria-label="Relapse is recovery">
-      <!-- Moss glow: the recovery thread -->
+      <!-- Richer candlelight glow: the emotional heart -->
+      <div class="relapse-candle-glow" aria-hidden="true"></div>
+      <!-- Moss recovery glow -->
       <div class="relapse-moss-glow" aria-hidden="true"></div>
-      <!-- Urge-wave line: decorative, aria-hidden -->
+      <!-- Amber warmth pool -->
+      <div class="relapse-amber-pool" aria-hidden="true"></div>
+      <!-- Urge-wave line: decorative -->
       <svg class="urge-wave" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 50 C200 50, 300 14, 600 14 C900 14, 1000 50, 1200 50" stroke="rgba(122,158,110,0.16)" stroke-width="1.5" fill="none"/>
+        <path d="M0 50 C200 50, 300 14, 600 14 C900 14, 1000 50, 1200 50" stroke="rgba(122,158,110,0.22)" stroke-width="2" fill="none"/>
       </svg>
 
       <div class="section-inner">
@@ -205,34 +224,57 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     <div class="bridge bridge--to-cream" aria-hidden="true"></div>
 
     <!-- ==================== §E GROUNDED IN SOMETHING REAL ==================== -->
-    <!-- Clean cream. No mascot. Minimal. Less glow. Documentary feel. -->
+    <!--
+      Cream section with playing Kippi (yarn) — personality beat that fills the mid-page.
+      Split layout: copy on left, Kippi playing on right.
+    -->
     <section class="section-e" aria-label="Grounded in something real">
-      <div class="section-inner">
-        <h2 class="section-headline font-display" data-reveal>
-          Not meditation and vibes.
-        </h2>
-        <div class="body-text" data-reveal>
-          <p>
-            The ideas Kippi draws on are the same ones used in evidence-based approaches
-            to binge eating urges. Including urge surfing — the practice of riding out a
-            craving rather than fighting it or giving in to it.
-          </p>
-          <p>
-            The core idea is simple: an urge is a wave. It rises, it peaks, it falls —
-            usually within twenty to thirty minutes. You don't have to defeat it. You just
-            have to get to the other side.
-          </p>
-          <p>Kippi is built around that window.</p>
-          <p class="landing-line-light">
-            It isn't therapy. It won't pretend to be. It's a friend for the moment — and
-            it's honest about that.
-          </p>
+      <div class="section-inner section-inner--split">
+
+        <div class="split-copy" data-reveal>
+          <h2 class="section-headline font-display">
+            Not meditation and vibes.
+          </h2>
+          <div class="body-text">
+            <p>
+              The ideas Kippi draws on are the same ones used in evidence-based approaches
+              to binge eating urges. Including urge surfing — the practice of riding out a
+              craving rather than fighting it or giving in to it.
+            </p>
+            <p>
+              The core idea is simple: an urge is a wave. It rises, it peaks, it falls —
+              usually within twenty to thirty minutes. You don't have to defeat it. You just
+              have to get to the other side.
+            </p>
+            <p>Kippi is built around that window.</p>
+            <p class="landing-line-light">
+              It isn't therapy. It won't pretend to be. It's a friend for the moment — and
+              it's honest about that.
+            </p>
+          </div>
         </div>
+
+        <!-- Playing Kippi: grounded in section -->
+        <div class="split-visual split-visual--playing" data-reveal aria-label="Kippi playing with yarn">
+          <div class="playing-glow" aria-hidden="true"></div>
+          <div class="playing-shadow" aria-hidden="true"></div>
+          <div class="playing-breathe">
+            <img
+              src="/mascot/kippi-v2-playing-cut.png"
+              alt="Kippi playing happily with a ball of yarn"
+              width="300"
+              height="300"
+              loading="lazy"
+              class="playing-img"
+            />
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ==================== §F CLOSING WAITLIST ==================== -->
-    <!-- Cream / soft warm. Echo of the hero warmth. -->
+    <!-- Warmer surface tone. Echo of the hero warmth. -->
     <section class="section-f" aria-label="Join the waitlist">
       <div class="closing-ambient" aria-hidden="true"></div>
       <div class="section-inner">
@@ -251,7 +293,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   </main>
 
   <!-- ==================== §G FOOTER ==================== -->
-  <!-- Deeper warm footer — bg-elevated on cream. -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -288,7 +329,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     top: 0;
     z-index: 100;
     padding: var(--space-5) var(--side-margin);
-    background-color: rgba(250, 247, 242, 0.92);
+    background-color: rgba(250, 245, 238, 0.93);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-subtle);
@@ -308,24 +349,19 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §A HERO ==================== */
   .section-hero {
     background-color: var(--bg-primary);
-    padding: var(--space-16) var(--side-margin) var(--space-20);
+    padding: var(--space-16) var(--side-margin) var(--space-16);
   }
 
   /*
     Mobile: flex column with explicit order
-      hero-copy-top  (headline)   order: 1
-      hero-pocket                 order: 2
-      hero-copy-bottom (subcopy)  order: 3
     Desktop (>= 720px): CSS grid 2-column
-      Left col spans copy-top + copy-bottom (stacked)
-      Right col = pocket
   */
   .hero-inner {
     max-width: var(--wide-max);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-10);
+    gap: var(--space-8);
     align-items: stretch;
   }
 
@@ -334,12 +370,16 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     width: 100%;
   }
 
-  .hero-pocket {
+  .hero-kippi-wrap {
     order: 2;
     position: relative;
     width: 100%;
-    max-width: 380px;
+    max-width: 420px;
     align-self: center;
+    /* The wrap is sized to the image; glow and shadow are absolute inside */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .hero-copy-bottom {
@@ -351,8 +391,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .hero-headline {
-    font-size: clamp(28px, 7vw, 52px);
-    line-height: 1.14;
+    font-size: clamp(30px, 7vw, 54px);
+    line-height: 1.12;
     color: var(--text-primary);
   }
 
@@ -369,103 +409,77 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     margin-top: var(--space-3);
   }
 
-  /* ---- Kippi pocket: the immersive scene ---- */
-  .pocket-glow {
+  /* ---- Hero Kippi grounding: transparent cutout on cream ---- */
+
+  /* Warm radial glow: the pool of candlelight Kippi sits in */
+  .kippi-glow {
     position: absolute;
-    top: 50%;
+    bottom: -10px;
     left: 50%;
-    width: 140%;
-    height: 140%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    width: 130%;
+    height: 130%;
     background: radial-gradient(
-      ellipse 70% 65% at 50% 50%,
-      rgba(196, 154, 60, 0.22) 0%,
-      rgba(194, 115, 72, 0.12) 38%,
-      rgba(250, 247, 242, 0) 70%
+      ellipse 70% 60% at 50% 60%,
+      rgba(196, 154, 60, 0.28) 0%,
+      rgba(194, 115, 72, 0.16) 35%,
+      rgba(250, 245, 238, 0) 68%
     );
     pointer-events: none;
     z-index: 0;
     animation: glow-breathe 5s ease-in-out infinite alternate;
   }
 
-  /* Candle-flicker: very subtle opacity variation on the glow */
-  .pocket-flicker {
+  /* Contact shadow: the single most important grounding cue */
+  /* A soft warm-dark elliptical blur beneath Kippi on the cream surface */
+  .kippi-shadow {
     position: absolute;
-    top: 50%;
+    bottom: -8px;
     left: 50%;
-    width: 120%;
-    height: 120%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-      ellipse 55% 50% at 50% 52%,
-      rgba(216, 150, 90, 0.14) 0%,
-      transparent 65%
-    );
+    transform: translateX(-50%);
+    width: 70%;
+    height: 32px;
+    background: rgba(44, 30, 22, 0.30);
+    border-radius: 50%;
+    filter: blur(16px);
     pointer-events: none;
-    z-index: 0;
-    animation: candle-flicker 3.8s ease-in-out infinite;
-  }
-
-  .pocket-scene {
-    position: relative;
     z-index: 1;
-    /* Overflow hidden: clips the scale-up so it doesn't push layout */
-    overflow: hidden;
-    width: 100%;
-    /* Aspect ratio 1:1 */
-    aspect-ratio: 1 / 1;
-    /* Feathered radial mask: opaque core, fast fade. Kills the built-in frame. */
-    -webkit-mask-image: radial-gradient(
-      ellipse 62% 60% at 50% 50%,
-      #000 35%,
-      rgba(0, 0, 0, 0.7) 52%,
-      rgba(0, 0, 0, 0.2) 68%,
-      transparent 82%
-    );
-    mask-image: radial-gradient(
-      ellipse 62% 60% at 50% 50%,
-      #000 35%,
-      rgba(0, 0, 0, 0.7) 52%,
-      rgba(0, 0, 0, 0.2) 68%,
-      transparent 82%
-    );
   }
 
-  .pocket-breathe {
-    position: absolute;
-    /* Push image outward 12%: the built-in rounded frame/vignette lives at
-       the edges — expanding beyond the mask container clips it away entirely */
-    inset: -12%;
+  .kippi-breathe {
+    position: relative;
+    z-index: 2;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    animation: pocket-breathe 5s var(--ease-calm) infinite alternate;
+    animation: kippi-breathe 5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    /* Ensure shadow tracks with Kippi during breathing */
+    transform-origin: bottom center;
   }
 
-  .pocket-img {
+  .kippi-hero-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 420px;
+    height: auto;
     display: block;
+    /* Transparent PNG sits directly on cream — no mask needed */
   }
 
-  /* Reduced motion: static -- glow + scene present, no movement */
   @media (prefers-reduced-motion: reduce) {
-    .pocket-glow     { animation: none; opacity: 0.85; }
-    .pocket-flicker  { animation: none; opacity: 0.5; }
-    .pocket-breathe  { animation: none; }
+    .kippi-glow    { animation: none; opacity: 0.85; }
+    .kippi-breathe { animation: none; }
   }
 
   /* ==================== §B THE LOOP ==================== */
   .section-b {
     background-color: var(--bg-surface);
-    padding: 100px var(--side-margin);
+    padding: 88px var(--side-margin);
   }
 
   /* ==================== §C WHAT KIPPI DOES ==================== */
   .section-c {
     background-color: var(--bg-elevated);
-    padding: 100px var(--side-margin);
+    padding: 88px var(--side-margin);
   }
 
   .section-inner--split {
@@ -563,42 +577,146 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     align-self: flex-end;
   }
 
-  /* ==================== BRIDGE BANDS ==================== */
+  /* ==================== BRIDGE BANDS + PEEKING KIPPI ==================== */
   .bridge {
     display: block;
-    height: 80px;
     pointer-events: none;
+    position: relative;
   }
 
   .bridge--to-dark {
-    background: linear-gradient(180deg, var(--bg-primary) 0%, #1C1410 100%);
+    height: 120px;
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, #1C1410 100%);
+    overflow: visible; /* allow Kippi to overlap §D */
   }
 
-  /* After section-e (cream) back to footer cream -- no bridge needed, footer has its own bg */
-  /* The bridge from dark back to cream is below §D */
   .bridge--to-cream {
+    height: 80px;
     background: linear-gradient(180deg, #1C1410 0%, var(--bg-primary) 100%);
+  }
+
+  /* Peeking Kippi container — positioned at the bottom of the bridge, right third */
+  .peek-wrap {
+    position: absolute;
+    bottom: -28px; /* overlaps into §D dark band */
+    right: clamp(48px, 10vw, 160px);
+    width: 160px;
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .peek-glow {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180%;
+    height: 120%;
+    background: radial-gradient(
+      ellipse 70% 55% at 50% 65%,
+      rgba(196, 154, 60, 0.20) 0%,
+      rgba(194, 115, 72, 0.10) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: glow-breathe 5s ease-in-out infinite alternate;
+  }
+
+  .peek-shadow {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 14px;
+    background: rgba(28, 20, 16, 0.38);
+    border-radius: 50%;
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .peek-breathe {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: kippi-breathe 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    transform-origin: bottom center;
+  }
+
+  .peek-img {
+    width: 130px;
+    height: auto;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .peek-glow   { animation: none; opacity: 0.8; }
+    .peek-breathe { animation: none; }
   }
 
   /* ==================== §D RELAPSE IS RECOVERY ==================== */
   .section-d {
     position: relative;
-    padding: 100px var(--side-margin);
+    padding: 80px var(--side-margin) 88px;
     overflow: hidden;
   }
 
+  /* Richer candlelight glow: the emotional centre */
+  .relapse-candle-glow {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      rgba(196, 154, 60, 0.20) 0%,
+      rgba(194, 115, 72, 0.12) 28%,
+      transparent 58%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Moss recovery glow: the emotional thread */
   .relapse-moss-glow {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 700px;
-    height: 700px;
+    width: 800px;
+    height: 600px;
     background: radial-gradient(
       ellipse at center,
-      rgba(122, 158, 110, 0.13) 0%,
-      rgba(122, 158, 110, 0.04) 42%,
+      rgba(122, 158, 110, 0.18) 0%,
+      rgba(122, 158, 110, 0.06) 42%,
       transparent 66%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Amber warmth pool: bottom half warmth */
+  .relapse-amber-pool {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(
+      ellipse at 50% 100%,
+      rgba(194, 115, 72, 0.11) 0%,
+      transparent 60%
     );
     pointer-events: none;
     z-index: 0;
@@ -619,9 +737,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     z-index: 1;
   }
 
-  /* §D uses Warm Dark text tokens -- enforced via .section-dark class */
+  /* §D uses Warm Dark text tokens */
   .body-text--dark p {
-    color: #C4A98A; /* text-secondary warm dark */
+    color: #C4A98A;
   }
 
   .relapse-close {
@@ -630,37 +748,97 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     font-size: 20px !important;
     font-weight: 400;
     font-style: italic;
-    color: #7A9E6E !important; /* moss -- same hex both modes */
+    color: #7A9E6E !important;
     margin-top: var(--space-3);
   }
 
-  /* ==================== §E GROUNDED ==================== */
+  /* ==================== §E GROUNDED — with playing Kippi ==================== */
   .section-e {
     background-color: var(--bg-primary);
-    padding: 100px var(--side-margin);
+    padding: 88px var(--side-margin);
   }
 
-  /* §E: less ambient glow than hero -- no decorative background elements, just text */
+  /* Playing Kippi visual wrapper */
+  .split-visual--playing {
+    position: relative;
+    max-width: 280px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .playing-glow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160%;
+    height: 110%;
+    background: radial-gradient(
+      ellipse 65% 55% at 50% 60%,
+      rgba(196, 154, 60, 0.18) 0%,
+      rgba(194, 115, 72, 0.10) 38%,
+      transparent 68%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: glow-breathe 5.5s ease-in-out infinite alternate;
+  }
+
+  .playing-shadow {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 16px;
+    background: rgba(44, 30, 22, 0.18);
+    border-radius: 50%;
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .playing-breathe {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: kippi-breathe 5.8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    transform-origin: bottom center;
+  }
+
+  .playing-img {
+    width: 240px;
+    height: auto;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .playing-glow   { animation: none; opacity: 0.8; }
+    .playing-breathe { animation: none; }
+  }
 
   /* ==================== §F CLOSING WAITLIST ==================== */
   .section-f {
     background-color: var(--bg-surface);
-    padding: 100px var(--side-margin) var(--space-20);
+    padding: 88px var(--side-margin) var(--space-20);
     position: relative;
     overflow: hidden;
   }
 
-  /* Soft ambient warmth behind the closing section -- much quieter than the hero */
   .closing-ambient {
     position: absolute;
     top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 600px;
+    width: 700px;
     height: 600px;
     background: radial-gradient(
       ellipse at center,
-      rgba(194, 115, 72, 0.06) 0%,
+      rgba(194, 115, 72, 0.09) 0%,
+      rgba(196, 154, 60, 0.05) 35%,
       transparent 65%
     );
     pointer-events: none;
@@ -771,7 +949,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .section-headline--xl {
-    font-size: clamp(28px, 5.5vw, 48px);
+    font-size: clamp(30px, 5.5vw, 50px);
   }
 
   .section-headline--lg {
@@ -791,7 +969,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     max-width: 640px;
   }
 
-  /* Emphatic close lines -- slightly elevated color, italic serif */
+  /* Emphatic close lines: slightly elevated colour, italic serif */
   .landing-line-light {
     font-family: 'Fraunces', serif;
     font-variation-settings: 'WONK' 0.6, 'opsz' 20;
@@ -804,21 +982,22 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   /* ==================== ANIMATIONS ==================== */
   @keyframes glow-breathe {
-    0%   { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 1;    transform: translate(-50%, -50%) scale(1.04); }
+    0%   { opacity: 0.72; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1;    transform: translateX(-50%) scale(1.05); }
   }
 
-  @keyframes candle-flicker {
-    0%   { opacity: 0.72; }
-    22%  { opacity: 0.88; }
-    41%  { opacity: 0.68; }
-    66%  { opacity: 0.90; }
-    83%  { opacity: 0.76; }
-    100% { opacity: 0.82; }
+  /* Hero glow doesn't use translateX — keep simple */
+  .kippi-glow {
+    animation-name: glow-breathe-center;
   }
 
-  @keyframes pocket-breathe {
-    /* Slow, barely-there breathing: 1.0 to 1.015 over ~5s */
+  @keyframes glow-breathe-center {
+    0%   { opacity: 0.72; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1;    transform: translateX(-50%) scale(1.05); }
+  }
+
+  @keyframes kippi-breathe {
+    /* Barely-there breathing: 1.0 to 1.015 over ~5s */
     0%   { transform: scale(1.000); }
     100% { transform: scale(1.015); }
   }
@@ -829,11 +1008,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding: var(--space-5) var(--space-10);
     }
 
-    /* Hero: CSS Grid 2-column [left-copy | pocket]
-       Left col: auto-sized to content; pocket right col is fixed width.
-       hero-copy-top and hero-copy-bottom both live in the left column. */
+    /* Hero: CSS Grid 2-column [copy | Kippi] */
     .section-hero {
-      padding: var(--space-20) var(--space-10);
+      padding: var(--space-20) var(--space-10) var(--space-16);
     }
 
     .hero-inner {
@@ -842,7 +1019,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       grid-template-rows: auto auto;
       column-gap: var(--space-16);
       row-gap: var(--space-8);
-      align-items: start;
+      align-items: center;
     }
 
     .hero-copy-top {
@@ -859,13 +1036,18 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       align-self: start;
     }
 
-    .hero-pocket {
+    .hero-kippi-wrap {
       order: 0;
       grid-column: 2;
       grid-row: 1 / 3;
       align-self: center;
-      max-width: 380px;
-      width: 380px;
+      /* Bolder: 460px on desktop — clear co-star */
+      max-width: 460px;
+      width: 460px;
+    }
+
+    .kippi-hero-img {
+      max-width: 460px;
     }
 
     /* Sections: wider side margins on desktop */
@@ -878,7 +1060,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-10);
     }
 
-    /* §C: side-by-side split */
+    /* §C and §E: side-by-side split */
     .section-inner--split {
       flex-direction: row;
       align-items: center;
@@ -894,13 +1076,21 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       align-self: auto;
     }
 
+    .split-visual--playing {
+      flex: 0 0 260px;
+    }
+
     .site-footer {
       padding-left: var(--space-10);
       padding-right: var(--space-10);
     }
 
     .bridge {
-      height: 100px;
+      height: 120px;
+    }
+
+    .bridge--to-cream {
+      height: 80px;
     }
   }
 

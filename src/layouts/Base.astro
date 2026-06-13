@@ -72,14 +72,14 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
     /* ---- Design tokens: Warm Light (site default) ---- */
     :root {
-      /* Warm Light palette - cream base, dark-brown text */
-      --bg-primary:    #FAF7F2;
-      --bg-surface:    #F2EDE4;
-      --bg-elevated:   #EAE3D8;
-      --bg-input:      #E2D9CC;
+      /* Warm Light palette - richer cream base (v4: pushed warmer), dark-brown text */
+      --bg-primary:    #FAF5EE;
+      --bg-surface:    #F2EAE0;
+      --bg-elevated:   #EAE0D2;
+      --bg-input:      #E0D4C4;
 
-      --border-subtle:  rgba(196, 184, 168, 0.20);
-      --border-default: rgba(154, 138, 120, 0.35);
+      --border-subtle:  rgba(180, 160, 140, 0.22);
+      --border-default: rgba(140, 116, 96, 0.38);
 
       --text-primary:   #2C1E16;
       --text-secondary: #7A5C46;
@@ -88,7 +88,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
       --accent-primary:         #C27348;
       --accent-primary-pressed: #A85C38;
-      --accent-primary-subtle:  rgba(194, 115, 72, 0.10);
+      --accent-primary-subtle:  rgba(194, 115, 72, 0.12);
       --accent-secondary:       #B8896A;
 
       --semantic-success:  #7A9E6E;
@@ -96,11 +96,11 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
       /* Moss - recovery thread */
       --moss:        #7A9E6E;
-      --moss-subtle: rgba(122, 158, 110, 0.15);
-      --moss-glow:   rgba(122, 158, 110, 0.22);
+      --moss-subtle: rgba(122, 158, 110, 0.18);
+      --moss-glow:   rgba(122, 158, 110, 0.28);
 
-      /* Amber glow for hero nook */
-      --amber-glow:  rgba(196, 154, 60, 0.18);
+      /* Amber glow - richer for v4 */
+      --amber-glow:  rgba(196, 154, 60, 0.24);
 
       /* Spacing */
       --space-1:  4px;
@@ -150,7 +150,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
     html {
       /* Root is always cream — no dark flash */
-      background-color: #FAF7F2;
+      background-color: #FAF5EE;
       color: var(--text-primary);
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px;
