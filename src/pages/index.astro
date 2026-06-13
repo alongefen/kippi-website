@@ -38,8 +38,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
             <img
               src="/mascot/kippi-v2-hero-seated-cut.png"
               alt="Kippi the hedgehog, seated and calm, waiting with you"
-              width="520"
-              height="520"
+              width="1286"
+              height="1483"
               loading="eager"
               fetchpriority="high"
               class="kippi-hero-img"
@@ -71,11 +71,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     <!-- ==================== §B THE LOOP ==================== -->
     <!-- Richer warm cream. No mascot. Copy breathes. -->
     <section class="section-b" aria-label="The loop">
-      <div class="section-inner">
+      <div class="section-b-glow" aria-hidden="true"></div>
+      <div class="section-inner section-b-inner">
+        <div class="section-b-label" aria-hidden="true">the loop</div>
         <h2 class="section-headline font-display" data-reveal>
           One thing off plan, and then the switch flips.
         </h2>
-        <div class="body-text" data-reveal>
+        <div class="body-text body-text--wide" data-reveal>
           <p>
             You know the feeling. It doesn't matter how the first thing happened — a dinner
             with friends, a moment of stress, a day where you were holding it together and
@@ -91,6 +93,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
             to log what happened. Reflect on your triggers. Fill in a form. By the time
             you're doing that, you're already past the moment that actually mattered.
           </p>
+          <div class="section-b-divider" aria-hidden="true"></div>
           <p class="landing-line-light">
             What nobody has built is something for the window before. The twenty minutes
             when the loop is just starting to close.
@@ -106,6 +109,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       <div class="section-inner section-inner--split">
 
         <div class="split-copy" data-reveal>
+          <div class="section-c-label" aria-hidden="true">the companion</div>
           <h2 class="section-headline font-display">
             Kippi says the first thing.
           </h2>
@@ -126,16 +130,26 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
         <div class="split-visual" data-reveal aria-label="Chat preview">
           <div class="phone-frame" role="img" aria-label="Kippi chat interface showing a warm conversation">
+            <div class="phone-notch" aria-hidden="true">
+              <div class="phone-notch-pill"></div>
+            </div>
             <div class="phone-screen">
               <div class="chat-header">
                 <div class="chat-avatar-wrap" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <circle cx="10" cy="10" r="10" fill="#C27348" opacity="0.15"/>
-                    <circle cx="10" cy="10" r="5" fill="#C27348" opacity="0.35"/>
-                  </svg>
+                  <div class="chat-avatar-circle">
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true">
+                      <!-- simplified hedgehog silhouette -->
+                      <ellipse cx="8" cy="9" rx="5.5" ry="4" fill="#C27348" opacity="0.5"/>
+                      <ellipse cx="8" cy="8.5" rx="4" ry="3.5" fill="#C27348" opacity="0.3"/>
+                      <circle cx="6.2" cy="7.2" r="0.9" fill="#2C1E16" opacity="0.6"/>
+                      <circle cx="9.8" cy="7.2" r="0.9" fill="#2C1E16" opacity="0.6"/>
+                    </svg>
+                  </div>
                 </div>
-                <span class="chat-name">Kippi</span>
-                <span class="chat-status">here with you</span>
+                <div class="chat-header-text">
+                  <span class="chat-name">Kippi</span>
+                  <span class="chat-status">here with you</span>
+                </div>
               </div>
               <div class="chat-messages">
                 <div class="msg msg-kippi">
@@ -148,6 +162,15 @@ import WaitlistForm from '../components/WaitlistForm.astro';
                   That makes sense. You don't have to explain it.<br />
                   Can we just stay here for a bit?
                 </div>
+                <div class="msg msg-user">
+                  Yeah. Okay.
+                </div>
+                <div class="msg msg-kippi">
+                  Good. I'm not going anywhere.
+                </div>
+              </div>
+              <div class="chat-input-bar" aria-hidden="true">
+                <div class="chat-input-pill">say something...</div>
               </div>
             </div>
           </div>
@@ -170,8 +193,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
           <img
             src="/mascot/kippi-v2-peeking-cut.png"
             alt="Kippi peering around the corner, curious"
-            width="160"
-            height="160"
+            width="871"
+            height="1599"
             loading="lazy"
             class="peek-img"
           />
@@ -262,8 +285,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
             <img
               src="/mascot/kippi-v2-playing-cut.png"
               alt="Kippi playing happily with a ball of yarn"
-              width="300"
-              height="300"
+              width="1288"
+              height="1473"
               loading="lazy"
               class="playing-img"
             />
@@ -431,17 +454,18 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   /* Contact shadow: the single most important grounding cue */
-  /* A soft warm-dark elliptical blur beneath Kippi on the cream surface */
+  /* Sits flush at the very bottom of the Kippi image element -- no gap. */
+  /* With the trimmed PNG, feet are the bottom edge; shadow bleeds 4px below. */
   .kippi-shadow {
     position: absolute;
-    bottom: -8px;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    height: 32px;
-    background: rgba(44, 30, 22, 0.30);
+    width: 54%;
+    height: 18px;
+    background: rgba(44, 30, 22, 0.42);
     border-radius: 50%;
-    filter: blur(16px);
+    filter: blur(9px);
     pointer-events: none;
     z-index: 1;
   }
@@ -473,13 +497,85 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §B THE LOOP ==================== */
   .section-b {
     background-color: var(--bg-surface);
-    padding: 88px var(--side-margin);
+    padding: 68px var(--side-margin) 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle warm ambient glow: not a particle -- just warmth pooled in the center */
+  .section-b-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 460px;
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 30%,
+      rgba(196, 154, 60, 0.09) 0%,
+      rgba(194, 115, 72, 0.05) 40%,
+      transparent 68%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-b-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Section eyebrow label */
+  .section-b-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    opacity: 0.7;
+    margin-bottom: var(--space-4);
+  }
+
+  /* Thin moss rule before the closing emphasis lines */
+  .section-b-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--moss);
+    opacity: 0.45;
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  /* Slightly tighter headline bottom in §B -- the label above already adds spacing */
+  .section-b-inner .section-headline {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Wider body measure for §B: copy breathes at generous width */
+  .body-text--wide p {
+    max-width: 680px;
   }
 
   /* ==================== §C WHAT KIPPI DOES ==================== */
   .section-c {
     background-color: var(--bg-elevated);
-    padding: 88px var(--side-margin);
+    padding: 68px var(--side-margin) 72px;
+  }
+
+  /* Section eyebrow label */
+  .section-c-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    opacity: 0.7;
+    margin-bottom: var(--space-4);
+  }
+
+  .section-c .section-headline {
+    margin-bottom: var(--space-6);
   }
 
   .section-inner--split {
@@ -506,10 +602,25 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     background: var(--bg-primary);
     border-radius: var(--radius-2xl);
     border: 1.5px solid var(--border-default);
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-3) var(--space-4);
     box-shadow:
       0 2px 8px rgba(44, 30, 22, 0.08),
-      0 8px 24px rgba(44, 30, 22, 0.06);
+      0 12px 32px rgba(44, 30, 22, 0.10);
+  }
+
+  /* Tiny device notch for realism */
+  .phone-notch {
+    display: flex;
+    justify-content: center;
+    padding-bottom: var(--space-3);
+  }
+
+  .phone-notch-pill {
+    width: 48px;
+    height: 4px;
+    background: var(--border-default);
+    border-radius: var(--radius-full);
+    opacity: 0.5;
   }
 
   .phone-screen {
@@ -522,59 +633,90 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-4) var(--space-4) var(--space-3);
+    padding: var(--space-3) var(--space-4);
     border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
   }
 
   .chat-avatar-wrap {
-    width: 28px;
-    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .chat-avatar-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: var(--accent-primary-subtle);
+    border: 1px solid rgba(194, 115, 72, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .chat-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-primary);
+  .chat-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     flex: 1;
   }
 
+  .chat-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
   .chat-status {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--semantic-success);
     letter-spacing: 0.02em;
   }
 
   .chat-messages {
-    padding: var(--space-4);
+    padding: var(--space-4) var(--space-4) var(--space-3);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
 
   .msg {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.55;
-    padding: 10px 14px;
-    max-width: 88%;
+    padding: 9px 13px;
+    max-width: 85%;
   }
 
   .msg-kippi {
     background: var(--bg-elevated);
-    border-radius: 14px 14px 14px 4px;
+    border-radius: 12px 12px 12px 3px;
     color: var(--text-primary);
     align-self: flex-start;
   }
 
   .msg-user {
     background: var(--accent-primary-subtle);
-    border: 1px solid rgba(194, 115, 72, 0.25);
-    border-radius: 14px 14px 4px 14px;
+    border: 1px solid rgba(194, 115, 72, 0.22);
+    border-radius: 12px 12px 3px 12px;
     color: var(--text-primary);
     align-self: flex-end;
+  }
+
+  /* Simulated input bar at the bottom of the phone */
+  .chat-input-bar {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
+  }
+
+  .chat-input-pill {
+    background: var(--bg-input);
+    border-radius: var(--radius-full);
+    padding: 9px 16px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-style: italic;
   }
 
   /* ==================== BRIDGE BANDS + PEEKING KIPPI ==================== */
@@ -629,14 +771,14 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   .peek-shadow {
     position: absolute;
-    bottom: -6px;
+    bottom: -3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    height: 14px;
-    background: rgba(28, 20, 16, 0.38);
+    width: 52%;
+    height: 12px;
+    background: rgba(28, 20, 16, 0.42);
     border-radius: 50%;
-    filter: blur(8px);
+    filter: blur(7px);
     pointer-events: none;
     z-index: 1;
   }
@@ -787,14 +929,14 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   .playing-shadow {
     position: absolute;
-    bottom: -6px;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 65%;
-    height: 16px;
-    background: rgba(44, 30, 22, 0.18);
+    width: 58%;
+    height: 14px;
+    background: rgba(44, 30, 22, 0.22);
     border-radius: 50%;
-    filter: blur(10px);
+    filter: blur(9px);
     pointer-events: none;
     z-index: 1;
   }
