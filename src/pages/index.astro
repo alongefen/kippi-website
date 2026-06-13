@@ -11,30 +11,41 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   <main>
 
-    <!-- ==================== §A HERO ==================== -->
+    <!-- ==================== §A HERO — Warm Dark, living Kippi ==================== -->
     <section class="section-hero" aria-label="Hero">
-      <!-- Candlelight glow -->
-      <div class="hero-glow" aria-hidden="true"></div>
+      <!-- Atmospheric layers (aria-hidden — decorative) -->
+      <div class="hero-glow-room" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
 
       <div class="hero-inner">
-        <div class="kippi-figure" data-reveal>
-          <img
-            src="/mascot/kippi-resting.png"
-            alt="Kippi the hedgehog, sitting quietly"
-            width="320"
-            height="320"
-            loading="eager"
-            fetchpriority="high"
-          />
+
+        <!-- Living Kippi -->
+        <div class="kippi-wrap" aria-label="Kippi the hedgehog, sitting quietly">
+          <div class="kippi-halo" aria-hidden="true"></div>
+          <div class="kippi-ripple" aria-hidden="true"></div>
+          <div class="kippi-shadow" aria-hidden="true"></div>
+          <div class="kippi-sway">
+            <div class="kippi-breathe">
+              <img
+                src="/mascot/kippi-resting.png"
+                alt="Kippi the hedgehog"
+                width="280"
+                height="280"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
         </div>
 
         <h1 class="hero-headline font-display" data-reveal>
-          When the urge comes,<br />you don't have to be alone with it.
+          When the urge hits, something is already here.
         </h1>
 
         <p class="hero-subcopy" data-reveal>
-          Kippi is a warm companion that sits with you through a binge urge — in the moment, not after.
-          No logging. No streaks. No judgment.
+          Kippi is a warm companion for binge eating urges — not a food diary, not a coach,
+          not a streak counter. Just something calm and present, exactly when you need it.
         </p>
 
         <div class="hero-form-wrap" data-reveal>
@@ -43,38 +54,50 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       </div>
     </section>
 
-    <!-- ==================== §B THE HONEST PROBLEM ==================== -->
-    <section class="section-text" aria-label="The honest problem">
+    <!-- ==================== Transition band: dark to cream ==================== -->
+    <div class="transition-band transition-band--to-cream" aria-hidden="true"></div>
+
+    <!-- ==================== §B THE HONEST PROBLEM — Warm Light / cream ==================== -->
+    <section class="section-text section-cream" aria-label="The honest problem">
       <div class="section-inner">
         <h2 class="section-headline font-display" data-reveal>
-          Every other app asks you to log it. After.
+          Every app asks you to log it. Afterwards.
         </h2>
         <div class="body-text" data-reveal>
           <p>
-            When the urge is happening, the last thing that helps is a food diary.
-            By the time you're writing it down, the moment has already passed.
+            When the urge is happening, opening a food diary is the last thing that helps.
           </p>
           <p>
-            Kippi is built for the moment itself — the twenty or thirty minutes when it's hardest.
-            You open the app, and someone is already there.
+            The logging apps were built for reflection. For filling in a form an hour later,
+            when you're already on the other side.
+          </p>
+          <p>
+            Kippi is built for the twenty minutes before that. The moment when it's actually
+            hardest — when you open your phone not to track anything, but just because you
+            need something to be there.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== §C WHAT KIPPI DOES ==================== -->
+    <!-- ==================== Transition band: cream to dark ==================== -->
+    <div class="transition-band transition-band--to-dark" aria-hidden="true"></div>
+
+    <!-- ==================== §C WHAT KIPPI DOES — Warm Dark ==================== -->
     <section class="section-split" aria-label="What Kippi does">
       <div class="section-inner section-inner--wide">
         <div class="split-text" data-reveal>
           <h2 class="section-headline font-display">
-            Kippi sends the first message.
+            You don't have to say anything first.
           </h2>
           <div class="body-text">
-            <p>You don't have to know what to say. You don't have to start.</p>
+            <p>Kippi opens with a message.</p>
             <p>
-              Kippi opens with a small hello and stays — calm, unhurried — while the urge rises and falls.
-              Like a friend who texts "I'm outside," and just comes and sits with you.
+              You don't need to explain yourself, find the right words, or know what you need.
+              Kippi starts the conversation. It stays with you — calm, unhurried — while the
+              urge rises and falls.
             </p>
+            <p class="landing-line">It doesn't try to fix anything. It just doesn't leave.</p>
           </div>
         </div>
         <div class="split-visual" data-reveal aria-label="Chat screen preview">
@@ -108,81 +131,94 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       </div>
     </section>
 
-    <!-- ==================== §D RELAPSE IS RECOVERY ==================== -->
+    <!-- ==================== §D RELAPSE IS RECOVERY — Warm Dark, moss-forward ==================== -->
     <section class="section-relapse" aria-label="Relapse is recovery">
-      <!-- Faint second glow -->
-      <div class="relapse-glow" aria-hidden="true"></div>
+      <!-- Moss glow replaces amber glow in this section -->
+      <div class="relapse-moss-glow" aria-hidden="true"></div>
+      <!-- Optional subtle urge-wave line (decorative, hidden from AT) -->
+      <svg class="urge-wave" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60 C200 60, 300 20, 600 20 C900 20, 1000 60, 1200 60" stroke="rgba(122,158,110,0.18)" stroke-width="1.5" fill="none"/>
+      </svg>
 
       <div class="section-inner">
         <h2 class="section-headline section-headline--xl font-display" data-reveal>
           Relapse is recovery.
         </h2>
         <div class="body-text relapse-body" data-reveal>
+          <p>Every app we found has a streak that breaks.</p>
           <p>
-            Every binge eating app we found has a streak that resets the moment you slip.
-            That isn't how recovery works.
+            Binge eating doesn't work that way. Slipping back is a normal part of the arc —
+            not a derailment, not a verdict on who you are. Clinical approaches to binge eating
+            are built around that reality. Kippi is too.
           </p>
+          <p>There's no streak here. There's no number that resets.</p>
           <p>
-            With binge eating, slipping back is a normal part of the arc, not a failure.
-            So Kippi has no streak to break.
+            If you open the app after a hard moment and the first thing you want to say is
+            "I just binged" — that's a first-class door. Kippi meets you there the same way
+            it meets you anywhere.
           </p>
-          <p>
-            "I just binged" isn't a confession here. It's a first-class door, right on the home screen —
-            and Kippi meets you there the same way it meets you anywhere. Without judgment.
-          </p>
-        </div>
-        <div class="holding-space-figure" data-reveal aria-hidden="true">
-          <img
-            src="/mascot/kippi-resting.png"
-            alt=""
-            width="80"
-            height="80"
-            loading="lazy"
-          />
+          <p class="relapse-close">Without judgment. Without making it a big thing.</p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== §E WHY A HEDGEHOG ==================== -->
-    <section class="section-text" aria-label="Why a hedgehog">
+    <!-- ==================== Transition band: dark to cream ==================== -->
+    <div class="transition-band transition-band--to-cream" aria-hidden="true"></div>
+
+    <!-- ==================== §E WHY A HEDGEHOG — Warm Light / cream ==================== -->
+    <section class="section-text section-cream" aria-label="Why a hedgehog">
       <div class="section-inner">
         <h2 class="section-headline font-display" data-reveal>
           Why a hedgehog?
         </h2>
         <div class="body-text" data-reveal>
+          <p>Spines on the outside. Soft underneath.</p>
           <p>
-            Spines on the outside. Soft underneath.
-            A hedgehog won't come to you if you're anxious or abrupt — it rewards patience and calm.
+            A hedgehog won't come to you if you're anxious or abrupt — it rewards patience
+            and calm. It doesn't perform. It doesn't cheer. It's just steady.
           </p>
+          <p>That's what Kippi is trying to be.</p>
           <p>
-            That's the whole idea. Kippi isn't a coach cheering you on.
-            It's a small, steady presence that's simply there.
+            Not a coach. Not a guide. Something smaller and quieter — a presence that was
+            already there when you arrived.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== §F QUIETLY GROUNDED ==================== -->
-    <section class="section-text section-text--surface" aria-label="Grounded approach">
+    <!-- ==================== Transition band: cream to dark ==================== -->
+    <div class="transition-band transition-band--to-dark" aria-hidden="true"></div>
+
+    <!-- ==================== §F NOT MEDITATION-AND-VIBES — Warm Dark ==================== -->
+    <section class="section-text" aria-label="Grounded approach">
       <div class="section-inner">
         <h2 class="section-headline font-display" data-reveal>
-          Built on ideas that take this seriously.
+          Not meditation-and-vibes.
         </h2>
         <div class="body-text" data-reveal>
           <p>
-            Kippi draws on the same ideas clinical approaches like CBT-E and DBT use for urges —
-            including urge surfing, the practice of riding a craving out instead of fighting it.
+            Kippi draws on the same ideas that evidence-based approaches to binge eating use
+            for urges — including urge surfing: the practice of riding a craving through rather
+            than acting on it, or trying to push it away.
           </p>
           <p>
-            It isn't meditation-and-vibes. It also isn't therapy, and it won't pretend to be.
-            Kippi is a companion for the moment, and it's honest about that.
+            The core idea is that an urge is a wave. It rises, it peaks, it falls — usually
+            within twenty to thirty minutes. You don't have to fight it. You just have to get
+            to the other side.
+          </p>
+          <p>Kippi is built around that window.</p>
+          <p>
+            It isn't therapy. It won't pretend to be. It's a companion for the moment, and
+            it's honest about that.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== §G CLOSING WAITLIST ==================== -->
+    <!-- ==================== §G CLOSING WAITLIST — Warm Dark ==================== -->
     <section class="section-closing" aria-label="Join the waitlist">
+      <!-- Candlelight glow mirrors the hero -->
+      <div class="closing-glow" aria-hidden="true"></div>
       <div class="section-inner">
         <h2 class="section-headline font-display" data-reveal>
           Kippi will be here.
@@ -198,7 +234,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   </main>
 
-  <!-- ==================== §H FOOTER ==================== -->
+  <!-- ==================== §H FOOTER — Warm Dark ==================== -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -212,12 +248,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
         <a href="mailto:hello@kippi.help">hello@kippi.help</a>
       </nav>
 
+      <!-- SAGE-LOCKED: verbatim from Sage-approved v1 wording. Do not alter. -->
       <p class="footer-crisis">
         If you're in crisis, struggling to stay safe, or thinking about harming yourself, please reach out now.
         In the US, call or text <a href="tel:988" class="crisis-link">988</a> (Suicide &amp; Crisis Lifeline),
         or call ANAD's eating-disorders helpline at <a href="tel:8883757767" class="crisis-link">888-375-7767</a>.
         Outside the US, please contact your local emergency services.
-        Kippi is a companion, not an emergency service, and not a substitute for professional help.
+        Kippi is a companion — not an emergency service, and not a substitute for professional help.
       </p>
 
       <p class="footer-copy">&copy; 2026 Kippi</p>
@@ -244,25 +281,47 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
   .wordmark:hover { color: var(--text-primary); }
 
-  /* ==================== HERO ==================== */
+  /* ==================== §A HERO ==================== */
   .section-hero {
     position: relative;
+    background-color: #1C1410;
     padding: var(--space-12) var(--side-margin) var(--space-20);
     display: flex;
     justify-content: center;
     overflow: hidden;
   }
 
-  .hero-glow {
+  /* Atmospheric layers — ported from home-companion.html */
+  .hero-glow-room {
     position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    height: 900px;
-    background: radial-gradient(ellipse at center, rgba(194, 115, 72, 0.055) 0%, transparent 62%);
+    inset: 0;
     pointer-events: none;
     z-index: 0;
+    background:
+      radial-gradient(120% 70% at 50% 30%, rgba(216, 150, 90, 0.18) 0%, rgba(194, 115, 72, 0.085) 34%, transparent 62%),
+      radial-gradient(80% 46% at 50% 78%, rgba(196, 118, 72, 0.06) 0%, transparent 76%);
+    animation: flicker 6.5s ease-in-out infinite;
+  }
+
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(115% 88% at 50% 40%, transparent 50%, rgba(18, 11, 7, 0.58) 100%),
+      linear-gradient(180deg, rgba(18, 11, 7, 0.30) 0%, transparent 16%, transparent 70%, rgba(16, 9, 6, 0.62) 100%);
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
   }
 
   .hero-inner {
@@ -277,27 +336,101 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     gap: var(--space-8);
   }
 
-  .kippi-figure {
-    width: 140px;
-    height: 140px;
-  }
-  .kippi-figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  /* ---- Living Kippi (breathing / sway / halo / shadow / ripple) ---- */
+  .kippi-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  .kippi-halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 330px;
+    height: 330px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 44%, rgba(226, 162, 100, 0.26) 0%, rgba(200, 128, 76, 0.11) 36%, transparent 67%);
+    animation: halo 4.2s ease-in-out infinite alternate;
+  }
+
+  .kippi-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1.5px solid rgba(226, 162, 100, 0.30);
+    pointer-events: none;
+    animation: ripple 4.6s ease-out infinite;
+  }
+
+  .kippi-shadow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 150px;
+    height: 24px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(8, 5, 3, 0.55) 0%, rgba(8, 5, 3, 0.22) 46%, transparent 72%);
+    filter: blur(2px);
+    animation: shadow 4.2s ease-in-out infinite alternate;
+  }
+
+  .kippi-sway {
+    position: absolute;
+    inset: 0;
+    animation: sway 6.4s ease-in-out infinite alternate;
+    transform-origin: 50% 88%;
+  }
+
+  .kippi-breathe {
+    position: absolute;
+    inset: 0;
+    animation: breathe 4.2s ease-in-out infinite alternate;
+    transform-origin: 50% 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kippi-breathe img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    /* RGBA cutout — no checkerboard because background is transparent */
+    filter: drop-shadow(0 12px 20px rgba(10, 6, 3, 0.45));
+  }
+
+  /* prefers-reduced-motion: calm static state — glow + shadow only, no movement */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-glow-room { animation: none; }
+    .kippi-halo { animation: none; opacity: 0.85; }
+    .kippi-ripple { animation: none; opacity: 0; }
+    .kippi-shadow { animation: none; opacity: 0.45; }
+    .kippi-sway { animation: none; }
+    .kippi-breathe { animation: none; }
+  }
+
+  /* ---- Hero text ---- */
   .hero-headline {
     font-size: clamp(30px, 6vw, 52px);
     line-height: 1.15;
-    color: var(--text-primary);
+    color: #F5EEE6;
     max-width: 580px;
   }
 
   .hero-subcopy {
     font-size: 18px;
     line-height: 1.65;
-    color: var(--text-secondary);
+    color: #C4A98A;
     max-width: 520px;
   }
 
@@ -307,13 +440,30 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     justify-content: center;
   }
 
+  /* ==================== TRANSITION BANDS ==================== */
+  /* Soft gradient bands that bridge dark <-> cream sections */
+  .transition-band {
+    display: block;
+    height: 64px;
+    pointer-events: none;
+  }
+
+  .transition-band--to-cream {
+    background: linear-gradient(180deg, #1C1410 0%, #FAF7F2 100%);
+  }
+
+  .transition-band--to-dark {
+    background: linear-gradient(180deg, #FAF7F2 0%, #1C1410 100%);
+  }
+
   /* ==================== SECTION BASE ==================== */
   .section-text {
     padding: var(--space-20) var(--side-margin);
   }
 
-  .section-text--surface {
-    background: var(--bg-surface);
+  /* Cream variant — tokens already scoped via .section-cream in Base.astro */
+  .section-text.section-cream {
+    padding: var(--space-20) var(--side-margin);
   }
 
   .section-inner {
@@ -336,6 +486,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     font-size: clamp(30px, 5.5vw, 48px);
   }
 
+  /* Cream sections: explicit dark text (never inherit a light value) */
+  .section-cream .section-headline {
+    color: #2C1E16;
+  }
+
   .body-text {
     display: flex;
     flex-direction: column;
@@ -349,14 +504,14 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     max-width: 640px;
   }
 
-  /* ==================== SPLIT (§C) ==================== */
-  .section-split {
-    padding: var(--space-20) var(--side-margin);
+  /* Cream sections: explicit dark secondary text */
+  .section-cream .body-text p {
+    color: #7A5C46;
   }
 
-  .section-inner--wide .split-text,
-  .section-inner--wide .split-visual {
-    /* Mobile: stacked */
+  /* ==================== §C SPLIT ==================== */
+  .section-split {
+    padding: var(--space-20) var(--side-margin);
   }
 
   .section-inner--wide {
@@ -366,7 +521,17 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     align-items: flex-start;
   }
 
-  /* ---- Phone frame ---- */
+  .landing-line {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 24;
+    font-size: 20px !important;
+    font-weight: 400;
+    font-style: italic;
+    color: #C4A98A !important;
+    margin-top: var(--space-3);
+  }
+
+  /* Phone frame */
   .phone-frame {
     width: 100%;
     max-width: 300px;
@@ -436,21 +601,34 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     align-self: flex-end;
   }
 
-  /* ==================== RELAPSE IS RECOVERY (§D) ==================== */
+  /* ==================== §D RELAPSE IS RECOVERY ==================== */
   .section-relapse {
     position: relative;
+    background-color: #1C1410;
     padding: var(--space-20) var(--side-margin);
     overflow: hidden;
   }
 
-  .relapse-glow {
+  /* Moss glow — replaces amber in this section */
+  .relapse-moss-glow {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 700px;
     height: 700px;
-    background: radial-gradient(ellipse at center, rgba(194, 115, 72, 0.035) 0%, transparent 62%);
+    background: radial-gradient(ellipse at center, rgba(122, 158, 110, 0.12) 0%, rgba(122, 158, 110, 0.04) 40%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Urge wave line — purely decorative, aria-hidden */
+  .urge-wave {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    height: 80px;
     pointer-events: none;
     z-index: 0;
   }
@@ -464,28 +642,49 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     max-width: 600px;
   }
 
-  .holding-space-figure {
-    margin-top: var(--space-10);
-  }
-  .holding-space-figure img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    opacity: 0.85;
+  .relapse-close {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 20;
+    font-size: 20px !important;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--moss) !important;
+    margin-top: var(--space-3);
   }
 
-  /* ==================== CLOSING WAITLIST (§G) ==================== */
+  /* ==================== §G CLOSING WAITLIST ==================== */
   .section-closing {
+    position: relative;
+    background-color: #1C1410;
     padding: var(--space-20) var(--side-margin) var(--space-16);
+    overflow: hidden;
+  }
+
+  .closing-glow {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(ellipse at center, rgba(194, 115, 72, 0.055) 0%, transparent 62%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-closing .section-inner {
+    position: relative;
+    z-index: 1;
   }
 
   .closing-form-wrap {
     margin-top: var(--space-6);
   }
 
-  /* ==================== FOOTER (§H) ==================== */
+  /* ==================== §H FOOTER ==================== */
   .site-footer {
-    border-top: 1px solid var(--border-subtle);
+    background-color: #1C1410;
+    border-top: 1px solid rgba(66, 48, 38, 0.12);
     padding: var(--space-12) var(--side-margin) var(--space-10);
   }
 
@@ -512,7 +711,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     font-variation-settings: 'WONK' 0.6, 'opsz' 14;
     font-size: 14px;
     font-weight: 300;
-    color: var(--text-tertiary);
+    color: #8C6B52;
     font-style: italic;
   }
 
@@ -524,30 +723,59 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   .footer-links a {
     font-size: 15px;
-    color: var(--text-tertiary);
+    color: #8C6B52;
     text-decoration: none;
   }
-  .footer-links a:hover { color: var(--text-secondary); }
+  .footer-links a:hover { color: #C4A98A; }
 
   .footer-crisis {
     font-size: 13px;
     line-height: 1.6;
-    color: var(--text-tertiary);
+    color: #8C6B52;
     max-width: 560px;
-    border-top: 1px solid var(--border-subtle);
+    border-top: 1px solid rgba(66, 48, 38, 0.12);
     padding-top: var(--space-5);
   }
 
   .crisis-link {
-    color: var(--semantic-crisis);
+    color: #C25A4A;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
-  .crisis-link:hover { color: var(--semantic-crisis); }
+  .crisis-link:hover { color: #C25A4A; }
 
   .footer-copy {
     font-size: 13px;
-    color: var(--text-tertiary);
+    color: #8C6B52;
+  }
+
+  /* ==================== ANIMATIONS ==================== */
+  @keyframes breathe {
+    0%   { transform: translateY(1px) scale(0.995); }
+    100% { transform: translateY(-5px) scale(1.035); }
+  }
+  @keyframes sway {
+    0%   { transform: rotate(-1.3deg); }
+    100% { transform: rotate(1.3deg); }
+  }
+  @keyframes halo {
+    0%   { opacity: 0.78; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 1;    transform: translate(-50%, -50%) scale(1.05); }
+  }
+  @keyframes shadow {
+    0%   { opacity: 0.55; transform: translateX(-50%) scaleX(1.03); }
+    100% { opacity: 0.4;  transform: translateX(-50%) scaleX(0.9); }
+  }
+  @keyframes flicker {
+    0%   { opacity: 0.95; }
+    38%  { opacity: 1; }
+    66%  { opacity: 0.965; }
+    100% { opacity: 0.93; }
+  }
+  @keyframes ripple {
+    0%   { opacity: 0;    transform: translate(-50%, -50%) scale(0.5); }
+    22%  { opacity: 0.32; }
+    100% { opacity: 0;    transform: translate(-50%, -50%) scale(1.5); }
   }
 
   /* ==================== RESPONSIVE — DESKTOP ==================== */
@@ -560,9 +788,14 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding: var(--space-16) var(--space-10) var(--space-20);
     }
 
-    .kippi-figure {
-      width: 180px;
-      height: 180px;
+    .kippi-wrap {
+      width: 240px;
+      height: 240px;
+    }
+
+    .kippi-breathe img {
+      width: 240px;
+      height: 240px;
     }
 
     .section-text,
@@ -571,11 +804,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     .section-closing {
       padding-top: 100px;
       padding-bottom: 100px;
-      padding-left: var(--space-10);
-      padding-right: var(--space-10);
-    }
-
-    .section-text--surface {
       padding-left: var(--space-10);
       padding-right: var(--space-10);
     }
@@ -603,6 +831,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-left: var(--space-10);
       padding-right: var(--space-10);
     }
+
+    .transition-band {
+      height: 80px;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -610,11 +842,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     .section-split,
     .section-relapse,
     .section-closing {
-      padding-left: var(--space-16);
-      padding-right: var(--space-16);
-    }
-
-    .section-text--surface {
       padding-left: var(--space-16);
       padding-right: var(--space-16);
     }

@@ -72,7 +72,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
     /* ---- Design tokens ---- */
     :root {
-      /* Colours - Warm Dark */
+      /* Colours - Warm Dark (default / dark sections) */
       --bg-primary:    #1C1410;
       --bg-surface:    #251A14;
       --bg-elevated:   #2E211A;
@@ -93,6 +93,11 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 
       --semantic-success:       #7A9E6E;
       --semantic-crisis:        #C25A4A;
+
+      /* Moss - promoted to secondary accent (recovery thread) */
+      --moss:          #7A9E6E;
+      --moss-subtle:   rgba(122, 158, 110, 0.15);
+      --moss-glow:     rgba(122, 158, 110, 0.22);
 
       /* Spacing */
       --space-1:  4px;
@@ -122,6 +127,23 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
       --content-max:  680px;
       --wide-max:     960px;
       --side-margin:  20px;
+    }
+
+    /* ---- Warm Light / cream sections ---- */
+    /* Applied as a class on section elements, overrides text + bg tokens locally */
+    .section-cream {
+      --bg-primary:    #FAF7F2;
+      --bg-surface:    #F2EDE4;
+      --bg-elevated:   #EAE3D8;
+      --bg-input:      #E2D9CC;
+      --border-subtle:  rgba(196, 184, 168, 0.18);
+      --border-default: rgba(154, 138, 120, 0.30);
+      --text-primary:   #2C1E16;
+      --text-secondary: #7A5C46;
+      --text-tertiary:  #A08070;
+      --text-inverse:   #F5EEE6;
+      background-color: #FAF7F2;
+      color: #2C1E16;
     }
 
     html {

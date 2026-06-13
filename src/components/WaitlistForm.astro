@@ -53,7 +53,7 @@ const { id = "waitlist-form" } = Astro.props;
   <p id={`${id}-error`} class="form-error" role="alert" aria-live="polite" hidden></p>
   <p id={`${id}-success`} class="form-success" role="status" aria-live="polite" hidden></p>
 
-  <p class="form-hint">We'll tell you the moment Kippi is ready. Nothing else.</p>
+  <p class="form-hint">No spam. Just a message when Kippi is ready.</p>
 </form>
 
 <style>
@@ -144,7 +144,8 @@ const { id = "waitlist-form" } = Astro.props;
   .form-success {
     margin-top: var(--space-3);
     font-size: 15px;
-    color: var(--semantic-success);
+    /* Moss / semantic-success — same hex both modes; safe on dark and cream */
+    color: #7A9E6E;
     line-height: 1.5;
   }
 
@@ -250,7 +251,7 @@ const { id = "waitlist-form" } = Astro.props;
 
         // 409 Conflict = duplicate email. Treat as success.
         if (res.status === 409) {
-          showSuccess("You're on the list. We'll be in touch when Kippi is ready.");
+          showSuccess("Already on the list. We'll reach out when Kippi is ready.");
           btn.disabled = false;
           btn.classList.remove('is-loading');
           return;
