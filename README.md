@@ -49,7 +49,7 @@ Run this SQL in the Supabase SQL editor to create the waitlist table and apply t
 CREATE TABLE public.waitlist (
   id          uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   email       text NOT NULL,
-  source      text,
+  source      text CHECK (char_length(source) <= 500),
   created_at  timestamptz DEFAULT now() NOT NULL,
 
   CONSTRAINT waitlist_email_unique UNIQUE (email),
