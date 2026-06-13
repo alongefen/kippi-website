@@ -137,10 +137,19 @@ import Base from '../layouts/Base.astro';
   </main>
 
   <footer class="site-footer-legal">
-    <a href="/">Back to Kippi</a>
-    <span>&middot;</span>
-    <a href="/terms">Terms</a>
-    <span>&copy; 2026 Kippi</span>
+    <p class="footer-crisis-legal">
+      If you're in crisis, struggling to stay safe, or thinking about harming yourself, please reach out now.
+      In the US, call or text <a href="tel:988" class="crisis-link-legal">988</a> (Suicide &amp; Crisis Lifeline),
+      or call ANAD's eating-disorders helpline at <a href="tel:8883757767" class="crisis-link-legal">888-375-7767</a>.
+      Outside the US, please contact your local emergency services.
+      Kippi is a companion, not an emergency service, and not a substitute for professional help.
+    </p>
+    <div class="footer-legal-nav">
+      <a href="/">Back to Kippi</a>
+      <span>&middot;</span>
+      <a href="/terms">Terms</a>
+      <span>&copy; 2026 Kippi</span>
+    </div>
   </footer>
 </Base>
 
@@ -245,11 +254,30 @@ import Base from '../layouts/Base.astro';
   .site-footer-legal {
     padding: var(--space-8) var(--side-margin);
     display: flex;
-    align-items: center;
-    gap: var(--space-4);
+    flex-direction: column;
+    gap: var(--space-5);
     border-top: 1px solid var(--border-subtle);
     max-width: var(--content-max);
     margin: 0 auto;
+  }
+
+  .footer-crisis-legal {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-tertiary);
+  }
+
+  .crisis-link-legal {
+    color: var(--semantic-crisis);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .crisis-link-legal:hover { color: var(--semantic-crisis); }
+
+  .footer-legal-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 
   .site-footer-legal a {
