@@ -1,0 +1,270 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Terms of Use — Kippi"
+  description="Kippi terms of use. Kippi is a companion app, not a medical service."
+  canonical="/terms"
+>
+  <header class="site-header">
+    <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
+  </header>
+
+  <main class="legal-main">
+    <article class="legal-article">
+
+      <!--
+        FOUNDER REVIEW FLAG:
+        This is template legal copy for a pre-launch site.
+        Before go-live (and certainly before App Store submission), please:
+        1. Have a lawyer review this document.
+        2. Replace all [PLACEHOLDER] values below.
+        3. Confirm jurisdiction and governing law (currently: [JURISDICTION]).
+      -->
+
+      <header class="legal-header">
+        <p class="legal-label">Legal</p>
+        <h1 class="legal-title font-display">Terms of Use</h1>
+        <p class="legal-date">Last updated: [DATE] &mdash; <strong>DRAFT — REQUIRES FOUNDER AND LEGAL REVIEW BEFORE GO-LIVE</strong></p>
+      </header>
+
+      <div class="legal-body">
+
+        <h2>1. About these terms</h2>
+        <p>
+          These terms of use apply to your use of the Kippi website at kippi.help,
+          operated by [COMPANY NAME] ("[JURISDICTION]").
+          By accessing this site, you agree to these terms.
+        </p>
+        <p>
+          These terms do not yet cover the Kippi mobile application.
+          Separate terms will be published before the app launches.
+        </p>
+
+        <h2>2. What this site is</h2>
+        <p>
+          This site provides information about the Kippi app (currently in development)
+          and allows you to join a waitlist to be notified when it launches.
+          The site is informational only.
+        </p>
+
+        <h2>3. Not medical advice</h2>
+        <div class="legal-disclaimer">
+          <p>
+            <strong>Kippi is not a medical service.</strong> Nothing on this site,
+            and nothing in the Kippi app, constitutes medical, psychological,
+            or clinical advice, diagnosis, or treatment.
+          </p>
+          <p>
+            Kippi is a supportive companion application intended to provide
+            in-the-moment emotional support. It is not a substitute for
+            professional mental health treatment, therapy, or emergency services.
+          </p>
+          <p>
+            <strong>If you are in crisis or believe you may harm yourself or others,
+            stop and contact emergency services or a crisis line immediately.</strong>
+            In the US, call or text <a href="tel:988">988</a>.
+            Kippi cannot respond to emergencies.
+          </p>
+        </div>
+
+        <h2>4. Acceptable use</h2>
+        <p>By using this site, you agree not to:</p>
+        <ul>
+          <li>Attempt to interfere with, disrupt, or overload the site or its infrastructure</li>
+          <li>Submit false, misleading, or fraudulent information</li>
+          <li>Use the site for any unlawful purpose</li>
+          <li>Attempt to gain unauthorized access to any part of the site or its backend systems</li>
+          <li>Harvest or collect personal data of other users</li>
+        </ul>
+
+        <h2>5. Intellectual property</h2>
+        <p>
+          All content on this site — including the Kippi name, wordmark, mascot character,
+          design, and copy — is owned by [COMPANY NAME] and protected by applicable copyright
+          and trademark law. You may not reproduce, distribute, or create derivative works
+          from this content without our written permission.
+        </p>
+
+        <h2>6. Disclaimer of warranties</h2>
+        <p>
+          This site is provided "as is" without warranty of any kind, express or implied.
+          We do not warrant that the site will be available at all times, free of errors,
+          or suitable for any particular purpose.
+        </p>
+
+        <h2>7. Limitation of liability</h2>
+        <p>
+          To the maximum extent permitted by law, [COMPANY NAME] will not be liable
+          for any indirect, incidental, special, or consequential damages arising from
+          your use of this site or the Kippi app.
+          Our total liability to you for any claim arising from these terms or your use
+          of the site will not exceed [AMOUNT, e.g., USD $100].
+        </p>
+
+        <h2>8. Third-party links</h2>
+        <p>
+          This site may link to third-party websites. We are not responsible for the
+          content, privacy practices, or accuracy of those sites.
+        </p>
+
+        <h2>9. Governing law</h2>
+        <p>
+          These terms are governed by the laws of [JURISDICTION, e.g., the State of California, USA],
+          without regard to its conflict of law provisions.
+          Any disputes will be resolved in the courts of [JURISDICTION].
+        </p>
+
+        <h2>10. Changes to these terms</h2>
+        <p>
+          We may update these terms from time to time.
+          When we do, we will update the "last updated" date above.
+          Continued use of the site after any changes constitutes acceptance of the new terms.
+        </p>
+
+        <h2>11. Contact</h2>
+        <p>
+          Questions about these terms? Email us at
+          <a href="mailto:hello@kippi.help">hello@kippi.help</a>.
+        </p>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer-legal">
+    <a href="/">Back to Kippi</a>
+    <span>&middot;</span>
+    <a href="/privacy">Privacy</a>
+    <span>&copy; 2026 Kippi</span>
+  </footer>
+</Base>
+
+<style>
+  .site-header {
+    padding: var(--space-6) var(--side-margin);
+  }
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 18;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .legal-main {
+    padding: var(--space-12) var(--side-margin) var(--space-20);
+    display: flex;
+    justify-content: center;
+  }
+
+  .legal-article {
+    max-width: var(--content-max);
+    width: 100%;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .legal-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+
+  .legal-title {
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-date {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .legal-body h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--space-4);
+    margin-bottom: calc(-1 * var(--space-3));
+  }
+
+  .legal-body p,
+  .legal-body li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .legal-body ul {
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .legal-body a {
+    color: var(--accent-secondary);
+  }
+
+  .legal-disclaimer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+  }
+
+  .legal-disclaimer p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .site-footer-legal {
+    padding: var(--space-8) var(--side-margin);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+
+  .site-footer-legal a {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+  .site-footer-legal a:hover { color: var(--text-secondary); }
+
+  .site-footer-legal span {
+    font-size: 14px;
+    color: var(--text-tertiary);
+  }
+
+  @media (min-width: 720px) {
+    .site-header { padding: var(--space-8) var(--space-10); }
+    .legal-main { padding-left: var(--space-10); padding-right: var(--space-10); }
+  }
+</style>

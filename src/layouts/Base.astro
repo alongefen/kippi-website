@@ -1,0 +1,215 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Kippi — A companion for the hard moment",
+  description = "When the urge comes, you don't have to be alone with it. Kippi is a warm companion that sits with you through a binge urge — in the moment, not after. Join the waitlist.",
+  ogImage = "/og-image.png",
+  canonical,
+} = Astro.props;
+
+const siteUrl = "https://kippi.help";
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Primary meta -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Kippi" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Fonts: preconnect then load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,WONK@9..144,100..900,0..1&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- Global styles -->
+  <style is:global>
+    /* ---- Reset ---- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ---- Design tokens ---- */
+    :root {
+      /* Colours - Warm Dark */
+      --bg-primary:    #1C1410;
+      --bg-surface:    #251A14;
+      --bg-elevated:   #2E211A;
+      --bg-input:      #38281F;
+
+      --border-subtle:  rgba(66, 48, 38, 0.12);
+      --border-default: rgba(107, 79, 62, 0.25);
+
+      --text-primary:   #F5EEE6;
+      --text-secondary: #C4A98A;
+      --text-tertiary:  #8C6B52;
+      --text-inverse:   #1C1410;
+
+      --accent-primary:         #C27348;
+      --accent-primary-pressed: #A85C38;
+      --accent-primary-subtle:  rgba(194, 115, 72, 0.12);
+      --accent-secondary:       #B8896A;
+
+      --semantic-success:       #7A9E6E;
+      --semantic-crisis:        #C25A4A;
+
+      /* Spacing */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+
+      /* Radius */
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+      --radius-xl:   20px;
+      --radius-2xl:  28px;
+      --radius-full: 9999px;
+
+      /* Easing */
+      --ease-calm: cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Layout */
+      --content-max:  680px;
+      --wide-max:     960px;
+      --side-margin:  20px;
+    }
+
+    html {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-primary);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 200ms var(--ease-calm);
+    }
+    a:hover { color: var(--text-primary); }
+
+    /* Focus visible: warm outline, not browser default */
+    :focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ---- Typography helpers ---- */
+    .font-display {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0.6, 'opsz' 36;
+      font-weight: 400;
+    }
+
+    /* ---- Scroll-reveal (fade + rise) ---- */
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 500ms var(--ease-calm),
+          transform 500ms var(--ease-calm);
+      }
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Reduced motion: show instantly */
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <slot />
+
+  <!-- Scroll-reveal script (tiny, inline) -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+    );
+    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

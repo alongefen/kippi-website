@@ -1,0 +1,269 @@
+---
+// WaitlistForm.astro
+// Handles waitlist sign-ups via Supabase anon INSERT.
+// Keys come from PUBLIC env vars (SUPABASE_URL, SUPABASE_ANON_KEY) - see .env.example.
+// Honeypot: hidden "website" field. If filled, request is silently swallowed client-side.
+// Duplicate emails are treated as success (graceful deduplication at the UX layer).
+export interface Props {
+  id?: string;
+}
+const { id = "waitlist-form" } = Astro.props;
+---
+
+<form
+  id={id}
+  class="waitlist-form"
+  novalidate
+  aria-label="Join the Kippi waitlist"
+>
+  <!-- Honeypot: hidden from real users, bots fill it -->
+  <div class="hp-field" aria-hidden="true">
+    <label for={`${id}-hp`}>Leave this empty</label>
+    <input
+      id={`${id}-hp`}
+      type="text"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="form-row">
+    <div class="input-wrap">
+      <label for={`${id}-email`} class="sr-only">Email address</label>
+      <input
+        id={`${id}-email`}
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        autocomplete="email"
+        inputmode="email"
+        aria-required="true"
+        aria-describedby={`${id}-error ${id}-success`}
+      />
+    </div>
+    <button type="submit" class="btn-primary">
+      <span class="btn-label">Join the waitlist</span>
+      <span class="btn-loading" aria-hidden="true">...</span>
+    </button>
+  </div>
+
+  <!-- Status messages -->
+  <p id={`${id}-error`} class="form-error" role="alert" aria-live="polite" hidden></p>
+  <p id={`${id}-success`} class="form-success" role="status" aria-live="polite" hidden></p>
+
+  <p class="form-hint">We'll tell you the moment Kippi is ready. Nothing else.</p>
+</form>
+
+<style>
+  .waitlist-form {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* Honeypot - fully hidden from real users */
+  .hp-field {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .form-row {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .input-wrap {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  input[type="email"] {
+    width: 100%;
+    height: 56px;
+    background: var(--bg-input);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 0 var(--space-4);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-primary);
+    transition: border-color 200ms var(--ease-calm);
+  }
+  input[type="email"]::placeholder {
+    color: var(--text-tertiary);
+  }
+  input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent-secondary);
+  }
+  input[type="email"][aria-invalid="true"] {
+    border-color: var(--semantic-crisis);
+  }
+
+  .btn-primary {
+    position: relative;
+    height: 56px;
+    min-width: 160px;
+    padding: 0 var(--space-6);
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-calm), opacity 200ms var(--ease-calm);
+    white-space: nowrap;
+    min-height: 44px;
+  }
+  .btn-primary:hover { background: var(--accent-primary-pressed); }
+  .btn-primary:active { background: var(--accent-primary-pressed); }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-loading { display: none; }
+  .btn-primary.is-loading .btn-label { display: none; }
+  .btn-primary.is-loading .btn-loading { display: inline; }
+
+  .form-error {
+    margin-top: var(--space-3);
+    font-size: 14px;
+    color: var(--semantic-crisis);
+  }
+  .form-success {
+    margin-top: var(--space-3);
+    font-size: 15px;
+    color: var(--semantic-success);
+    line-height: 1.5;
+  }
+
+  .form-hint {
+    margin-top: var(--space-3);
+    font-size: 14px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+  }
+
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  // Reads env vars injected at build time via Astro's import.meta.env
+  const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL as string;
+  const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string;
+
+  // Wire up every .waitlist-form on the page (there are two: hero + closing section)
+  document.querySelectorAll<HTMLFormElement>('.waitlist-form').forEach((form) => {
+    const emailInput = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+    const hpInput = form.querySelector<HTMLInputElement>('input[name="website"]')!;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const errorEl = form.querySelector<HTMLParagraphElement>('.form-error')!;
+    const successEl = form.querySelector<HTMLParagraphElement>('.form-success')!;
+
+    function showError(msg: string) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      successEl.hidden = true;
+      emailInput.setAttribute('aria-invalid', 'true');
+    }
+    function showSuccess(msg: string) {
+      successEl.textContent = msg;
+      successEl.hidden = false;
+      errorEl.hidden = true;
+      emailInput.setAttribute('aria-invalid', 'false');
+    }
+    function clearStatus() {
+      errorEl.hidden = true;
+      successEl.hidden = true;
+      emailInput.removeAttribute('aria-invalid');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearStatus();
+
+      // Honeypot check - silently bail if filled
+      if (hpInput.value.trim() !== '') return;
+
+      const email = emailInput.value.trim().toLowerCase();
+
+      // Client-side format check
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        // Env vars not set - show a neutral message rather than a red error
+        showError('Something went wrong on our end. Try again later.');
+        return;
+      }
+
+      // Disable form while submitting
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            // Return nothing - we only need the status code
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify({
+            email,
+            source: document.referrer || 'direct',
+          }),
+        });
+
+        if (res.ok || res.status === 201) {
+          showSuccess("You're on the list. We'll be in touch when Kippi is ready.");
+          emailInput.value = '';
+          btn.disabled = false;
+          btn.classList.remove('is-loading');
+          return;
+        }
+
+        // 409 Conflict = duplicate email. Treat as success.
+        if (res.status === 409) {
+          showSuccess("You're on the list. We'll be in touch when Kippi is ready.");
+          btn.disabled = false;
+          btn.classList.remove('is-loading');
+          return;
+        }
+
+        // Unexpected error
+        showError("Something didn't go through. Try again?");
+      } catch {
+        showError("Something didn't go through. Try again?");
+      }
+
+      btn.disabled = false;
+      btn.classList.remove('is-loading');
+    });
+  });
+</script>

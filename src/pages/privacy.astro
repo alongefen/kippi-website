@@ -1,0 +1,271 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Privacy Policy — Kippi"
+  description="Kippi privacy policy. We collect only your email address for waitlist notifications. We do not sell your data."
+  canonical="/privacy"
+>
+  <header class="site-header">
+    <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
+  </header>
+
+  <main class="legal-main">
+    <article class="legal-article">
+
+      <!--
+        FOUNDER REVIEW FLAG:
+        This is template legal copy for a pre-launch site that collects only email addresses.
+        Before go-live (and certainly before App Store submission), please:
+        1. Have a lawyer review this document.
+        2. Replace all [PLACEHOLDER] values below.
+        3. Confirm jurisdiction (currently: [JURISDICTION]).
+      -->
+
+      <header class="legal-header">
+        <p class="legal-label">Legal</p>
+        <h1 class="legal-title font-display">Privacy Policy</h1>
+        <p class="legal-date">Last updated: [DATE] &mdash; <strong>DRAFT — REQUIRES FOUNDER AND LEGAL REVIEW BEFORE GO-LIVE</strong></p>
+      </header>
+
+      <div class="legal-body">
+
+        <h2>1. Who we are</h2>
+        <p>
+          Kippi is operated by [COMPANY NAME], based in [CITY, COUNTRY] ("[JURISDICTION]").
+          You can reach us at <a href="mailto:hello@kippi.help">hello@kippi.help</a>.
+        </p>
+        <p>
+          This privacy policy applies to the Kippi website at kippi.help ("the site").
+          It does not yet cover the Kippi mobile application, which is in development.
+          A separate policy will be published before the app launches.
+        </p>
+
+        <h2>2. What we collect</h2>
+        <p>
+          At this time, the only personal data we collect is your <strong>email address</strong>,
+          submitted voluntarily when you join our waitlist.
+        </p>
+        <p>We do not collect:</p>
+        <ul>
+          <li>Your name</li>
+          <li>Health or medical information</li>
+          <li>Financial information</li>
+          <li>Device identifiers or tracking cookies</li>
+          <li>Any information you did not provide directly</li>
+        </ul>
+
+        <h2>3. Why we collect it</h2>
+        <p>
+          We collect your email address for one purpose: to notify you when the Kippi app is available.
+          We will not send you marketing emails beyond this launch notification without your explicit consent.
+        </p>
+
+        <h2>4. Where we store it</h2>
+        <p>
+          Your email address is stored securely in Supabase, a cloud database service
+          (see <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's privacy policy</a>).
+          Data is hosted in [SUPABASE REGION, e.g., US East].
+          We do not store your data on any other third-party service.
+        </p>
+
+        <h2>5. Who we share it with</h2>
+        <p>
+          We do not sell, rent, or share your email address with any third party for marketing purposes.
+          We will not disclose your data unless required to do so by law.
+        </p>
+
+        <h2>6. How long we keep it</h2>
+        <p>
+          We will retain your email address until the Kippi app launches and you have been notified,
+          or until you request deletion — whichever comes first.
+          If the project does not launch within [TIMEFRAME, e.g., two years], we will delete all waitlist data.
+        </p>
+
+        <h2>7. Your rights</h2>
+        <p>
+          You have the right to:
+        </p>
+        <ul>
+          <li>Request a copy of the data we hold about you</li>
+          <li>Request that we correct or delete your data</li>
+          <li>Withdraw consent at any time</li>
+        </ul>
+        <p>
+          To exercise any of these rights, email us at
+          <a href="mailto:hello@kippi.help">hello@kippi.help</a>
+          with the subject line "Data request." We will respond within [TIMEFRAME, e.g., 30 days].
+        </p>
+
+        <h2>8. Cookies and tracking</h2>
+        <p>
+          This site does not currently use cookies or any third-party analytics tracking.
+          [UPDATE THIS SECTION if analytics are added before launch.]
+        </p>
+
+        <h2>9. Children</h2>
+        <p>
+          This site is not directed at children under the age of 13.
+          We do not knowingly collect personal data from children under 13.
+        </p>
+
+        <h2>10. Changes to this policy</h2>
+        <p>
+          If we make material changes to this policy, we will update the "last updated" date at the top
+          and, where appropriate, notify waitlist members by email.
+        </p>
+
+        <h2>11. Contact</h2>
+        <p>
+          Questions or concerns? Email us at
+          <a href="mailto:hello@kippi.help">hello@kippi.help</a>.
+        </p>
+
+        <div class="legal-disclaimer">
+          <p>
+            <strong>Not medical advice.</strong> Kippi is a supportive companion application,
+            not a medical device, clinical service, or emergency service.
+            Nothing on this site or in the Kippi app constitutes medical or psychological advice.
+            If you are experiencing a mental health emergency, please contact a qualified professional
+            or call/text 988 in the US.
+          </p>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer-legal">
+    <a href="/">Back to Kippi</a>
+    <span>&middot;</span>
+    <a href="/terms">Terms</a>
+    <span>&copy; 2026 Kippi</span>
+  </footer>
+</Base>
+
+<style>
+  .site-header {
+    padding: var(--space-6) var(--side-margin);
+  }
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 18;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .legal-main {
+    padding: var(--space-12) var(--side-margin) var(--space-20);
+    display: flex;
+    justify-content: center;
+  }
+
+  .legal-article {
+    max-width: var(--content-max);
+    width: 100%;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .legal-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+
+  .legal-title {
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-date {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .legal-body h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--space-4);
+    margin-bottom: calc(-1 * var(--space-3));
+  }
+
+  .legal-body p,
+  .legal-body li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .legal-body ul {
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .legal-body a {
+    color: var(--accent-secondary);
+  }
+
+  .legal-disclaimer {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+  }
+
+  .legal-disclaimer p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .site-footer-legal {
+    padding: var(--space-8) var(--side-margin);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+
+  .site-footer-legal a {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+  .site-footer-legal a:hover { color: var(--text-secondary); }
+
+  .site-footer-legal span {
+    font-size: 14px;
+    color: var(--text-tertiary);
+  }
+
+  @media (min-width: 720px) {
+    .site-header { padding: var(--space-8) var(--space-10); }
+    .legal-main { padding-left: var(--space-10); padding-right: var(--space-10); }
+  }
+</style>
