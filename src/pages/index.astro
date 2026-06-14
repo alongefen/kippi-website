@@ -105,17 +105,19 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       without clipping Kippi. z-index above both sections; overflow:visible on the seam container.
     -->
     <div class="seam-bc" aria-label="Kippi pulling himself up over the section ledge">
-      <div class="pullup-glow"       aria-hidden="true"></div>
-      <div class="pullup-ledge-shadow" aria-hidden="true"></div>
-      <div class="pullup-breathe">
-        <img
-          src="/mascot/kippi-v2-pullup-cut.png"
-          alt="Kippi gripping the ledge, peeking up curiously"
-          width="1201"
-          height="920"
-          loading="lazy"
-          class="pullup-img"
-        />
+      <div class="seam-bc-inner">
+        <div class="pullup-glow"       aria-hidden="true"></div>
+        <div class="pullup-ledge-shadow" aria-hidden="true"></div>
+        <div class="pullup-breathe">
+          <img
+            src="/mascot/kippi-v2-pullup-cut.png"
+            alt="Kippi gripping the ledge, peeking up curiously"
+            width="1201"
+            height="920"
+            loading="lazy"
+            class="pullup-img"
+          />
+        </div>
       </div>
     </div>
 
@@ -492,8 +494,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §B THE LOOP ==================== */
   .section-b {
     background-color: var(--bg-surface);
-    /* Mobile: comfortable top/bottom breathing room */
-    padding: 56px 20px 64px;
+    /* Mobile: bottom padding enlarged to create a clear "climbing zone" above the §B/§C seam.
+       Pull-up Kippi (90px tall) crests ~50px above the seam; add 50px crest + 30px breathing room
+       on top of the baseline 64px so "Kippi is for the window." never sits under his head/spines.
+       Desktop override below restores a tighter value since Kippi is in the left margin there. */
+    padding: 56px 20px 144px;
     position: relative;
     overflow: hidden;
   }
@@ -549,30 +554,41 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   /* ==================== §B/§C SEAM: pull-up Kippi ==================== */
   /*
-    Kippi climbs onto §C from the LEFT — tucked above the "THE COMPANION"
-    eyebrow and "Kippi says the first thing" headline (left copy column).
-    seam-bc has zero height, overflow: visible, left-aligned with §C's
-    content padding so paws grip the §B→§C color-change line at the left.
-    z-index: 30 clears both sections. Smaller than v6 (~60% of prior size).
+    .seam-bc is a zero-height full-width row at the §B/§C boundary.
+    .seam-bc-inner mirrors .section-inner (max-width 680px, centered) so
+    Kippi's left edge tracks the left edge of "THE COMPANION" / the copy
+    column at every viewport width — including wide desktop where padding
+    alone diverges from the centered content column.
+    Mobile: Kippi sits flush with §C's 20px gutter (matches section-inner padding).
+    Desktop 720px+: the inner div centers and Kippi auto-aligns left of it.
   */
   .seam-bc {
     position: relative;
     height: 0;
     overflow: visible;
-    display: flex;
-    /* LEFT-align to match §C section padding (20px mobile) */
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding-left: 20px;
     z-index: 30;
     pointer-events: none;
+    /* match §C section padding so the inner div edges up correctly */
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  /* Warm soft glow on the ledge so Kippi is grounded — follows left position */
+  /* mirrors .section-inner — centers the content column so Kippi's
+     left edge = left edge of "THE COMPANION" eyebrow at all widths */
+  .seam-bc-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  /* Warm soft glow on the ledge so Kippi is grounded */
   .pullup-glow {
     position: absolute;
     bottom: -12px;
-    left: 20px;
+    left: 0;
     width: 200px;
     height: 60px;
     background: radial-gradient(
@@ -590,7 +606,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .pullup-ledge-shadow {
     position: absolute;
     bottom: -3px;
-    left: 20px;
+    left: 0;
     width: 100px;
     height: 8px;
     background: rgba(44, 30, 22, 0.20);
@@ -606,15 +622,15 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    /* transform-origin at bottom keeps paws pinned to the seam line during breathe */
     animation: kippi-breathe 5.4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
     transform-origin: bottom center;
   }
 
-  /* Mobile: ~90px tall — clearly smallest of the three Kippis.
-     Image is 1201x920; at 90px height, full width ≈ 117px.
-     Head (~top 55%) reads ≈ 50px — compact, climbing-onto-section feel. */
+  /* Mobile: 72px tall — clearly smallest of the three Kippis.
+     Image is 1201x920; at 72px height, full width ≈ 94px. */
   .pullup-img {
-    height: 90px;
+    height: 72px;
     width: auto;
     display: block;
   }
@@ -677,27 +693,32 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   */
 
   /* Mobile card: visible on mobile, hidden on desktop */
+  /* Show the full conversation screenshot — no cropping.
+     The image is 1170×2532 (portrait phone ratio ~9:19.5).
+     We constrain the card width and let the image set the height naturally,
+     showing the entire screen including the chat input at the bottom. */
   .app-card-mobile {
     width: 100%;
-    max-width: 300px;
+    /* Cap width so the card isn't enormous; at 240px the full 9:19.5 image
+       is ~520px tall — visible and contained in a normal scroll section. */
+    max-width: 240px;
     margin: 0 auto;
     border-radius: var(--radius-2xl);
-    overflow: hidden;
-    background: #1a1a1e;
-    box-shadow:
-      0 4px 16px rgba(0, 0, 0, 0.18),
-      0 1px 4px rgba(0, 0, 0, 0.12);
+    /* overflow visible so the full image is never clipped */
+    overflow: visible;
+    background: transparent;
   }
 
   .app-card-screenshot {
     width: 100%;
     height: auto;
     display: block;
-    /* Show top portion of the conversation */
-    object-fit: cover;
-    object-position: top;
-    /* Limit height so the card doesn't go full-page */
-    max-height: 420px;
+    /* Show entire screenshot — no crop, no max-height cap */
+    object-fit: contain;
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.18),
+      0 1px 4px rgba(0, 0, 0, 0.12);
   }
 
   /* iPhone mockup: hidden on mobile, shown on desktop */
@@ -876,7 +897,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .split-visual--playing {
     position: relative;
     width: 100%;
-    max-width: 200px;
+    max-width: 160px;
     align-self: center;
     display: flex;
     align-items: flex-end;
@@ -926,9 +947,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     transform-origin: bottom center;
   }
 
-  /* Mobile: 160px - tasteful, not overwhelming */
+  /* Mobile: 124px - proportionate on phone, clearly larger than pull-up */
   .playing-img {
-    width: 160px;
+    width: 124px;
     height: auto;
     display: block;
   }
@@ -1196,10 +1217,17 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-10);
     }
 
+    /* Note: .section-b bottom padding is intentionally NOT overridden here.
+       The mobile base value (144px) is kept from 720px up to ~1100px because
+       §B text still overlaps Kippi horizontally at narrow desktop widths.
+       See the 1100px breakpoint below where horizontal clearance is confirmed. */
+
     /* Pull-up Kippi: grows slightly on desktop but stays smallest of three.
-       Left-align follows §C's 40px desktop padding. */
+       seam-bc-inner mirrors section-inner centering, so glow/shadow left:0
+       tracks Kippi's left edge automatically — no padding-left needed. */
     .seam-bc {
       padding-left: 40px;
+      padding-right: 40px;
     }
 
     .pullup-img {
@@ -1207,13 +1235,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     .pullup-glow {
-      left: 40px;
+      left: 0;
       width: 240px;
       height: 70px;
     }
 
     .pullup-ledge-shadow {
-      left: 40px;
+      left: 0;
       width: 120px;
       height: 9px;
     }
@@ -1300,9 +1328,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     /* Pull-up Kippi at 1024px+: still clearly smallest.
-       Left-align follows §C's 64px padding at this breakpoint. */
+       seam-bc-inner is centered to content-max so glow/shadow left:0 is correct. */
     .seam-bc {
       padding-left: 64px;
+      padding-right: 64px;
     }
 
     .pullup-img {
@@ -1310,18 +1339,33 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     .pullup-glow {
-      left: 64px;
+      left: 0;
       width: 260px;
     }
 
     .pullup-ledge-shadow {
-      left: 64px;
+      left: 0;
       width: 130px;
     }
 
     .hero-kippi-wrap {
       max-width: 310px;
       width: 310px;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (>= 1100px)
+     At this width the §B text block (max-width 680px, centered) starts
+     far enough right that pull-up Kippi (left-aligned at 64px, ~214px wide)
+     sits entirely in the left margin with zero horizontal overlap with text.
+     Only here is it safe to restore the tighter §B bottom padding.
+  ================================================================ */
+  @media (min-width: 1100px) {
+    /* Kippi is in the left margin, text starts at x ~215px+ — no collision.
+       Restore the original comfortable bottom padding (no extra clearance needed). */
+    .section-b {
+      padding-bottom: 64px;
     }
   }
 </style>
