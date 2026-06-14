@@ -549,57 +549,53 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   /* ==================== §B/§C SEAM: pull-up Kippi ==================== */
   /*
-    The seam-bc wrapper sits between §B and §C in the DOM flow.
-    It has zero height and overflow: visible so the character
-    bleeds both upward (into §B) and downward (into §C).
-    Centered horizontally. z-index: 30 clears both sections' content.
-    The image is 1201x920 (wider than tall): paws are at the bottom edge.
-    We render it at ~160px tall on mobile, ~190px on desktop.
-    translateY(-50%) centers it on the seam; we then shift up by half
-    the image height so paws land exactly on the boundary.
-    Because the image crops at the paws, bottom edge = paws = seam line.
+    Kippi climbs onto §C from the LEFT — tucked above the "THE COMPANION"
+    eyebrow and "Kippi says the first thing" headline (left copy column).
+    seam-bc has zero height, overflow: visible, left-aligned with §C's
+    content padding so paws grip the §B→§C color-change line at the left.
+    z-index: 30 clears both sections. Smaller than v6 (~60% of prior size).
   */
   .seam-bc {
     position: relative;
     height: 0;
     overflow: visible;
     display: flex;
-    justify-content: center;
+    /* LEFT-align to match §C section padding (20px mobile) */
+    justify-content: flex-start;
     align-items: flex-end;
+    padding-left: 20px;
     z-index: 30;
     pointer-events: none;
   }
 
-  /* Warm soft glow on the ledge so Kippi is grounded */
+  /* Warm soft glow on the ledge so Kippi is grounded — follows left position */
   .pullup-glow {
     position: absolute;
-    bottom: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 360px;
-    height: 80px;
+    bottom: -12px;
+    left: 20px;
+    width: 200px;
+    height: 60px;
     background: radial-gradient(
-      ellipse 80% 60% at 50% 50%,
+      ellipse 80% 60% at 40% 50%,
       rgba(196, 154, 60, 0.28) 0%,
       rgba(194, 115, 72, 0.12) 45%,
       transparent 72%
     );
     pointer-events: none;
     z-index: 0;
-    animation: glow-breathe 5s ease-in-out infinite alternate;
+    animation: glow-breathe-left 5s ease-in-out infinite alternate;
   }
 
   /* Faint shadow under the paws on the ledge */
   .pullup-ledge-shadow {
     position: absolute;
     bottom: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 180px;
-    height: 10px;
+    left: 20px;
+    width: 100px;
+    height: 8px;
     background: rgba(44, 30, 22, 0.20);
     border-radius: 50%;
-    filter: blur(6px);
+    filter: blur(5px);
     pointer-events: none;
     z-index: 1;
   }
@@ -614,11 +610,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     transform-origin: bottom center;
   }
 
-  /* Mobile: head ~140px tall. Image is 1201x920; head occupies ~top 55%.
-     At 140px rendered height, head reads ~77px, which is right in the
-     tasteful 80-120px head range on mobile. Full width is 140*(1201/920) = 183px. */
+  /* Mobile: ~90px tall — clearly smallest of the three Kippis.
+     Image is 1201x920; at 90px height, full width ≈ 117px.
+     Head (~top 55%) reads ≈ 50px — compact, climbing-onto-section feel. */
   .pullup-img {
-    height: 140px;
+    height: 90px;
     width: auto;
     display: block;
   }
@@ -1122,6 +1118,12 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     100% { opacity: 1;    transform: translateX(-50%) scale(1.05); }
   }
 
+  /* Left-anchored glow breathe: no translateX, scale from left origin */
+  @keyframes glow-breathe-left {
+    0%   { opacity: 0.72; transform: scale(1); }
+    100% { opacity: 1;    transform: scale(1.05); }
+  }
+
   @keyframes kippi-breathe {
     0%   { transform: scale(1.000); }
     100% { transform: scale(1.015); }
@@ -1194,19 +1196,26 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-10);
     }
 
-    /* Pull-up Kippi: grow on desktop */
+    /* Pull-up Kippi: grows slightly on desktop but stays smallest of three.
+       Left-align follows §C's 40px desktop padding. */
+    .seam-bc {
+      padding-left: 40px;
+    }
+
     .pullup-img {
-      height: 175px;
+      height: 110px;
     }
 
     .pullup-glow {
-      width: 480px;
-      height: 100px;
+      left: 40px;
+      width: 240px;
+      height: 70px;
     }
 
     .pullup-ledge-shadow {
-      width: 240px;
-      height: 12px;
+      left: 40px;
+      width: 120px;
+      height: 9px;
     }
 
     /* §C: restore vertical padding (no need for extra top now that
@@ -1233,12 +1242,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     .split-visual--playing {
-      flex: 0 0 220px;
-      max-width: 220px;
+      flex: 0 0 240px;
+      max-width: 240px;
     }
 
+    /* Playing Kippi: medium — clearly between hero (310px) and pull-up (110px) */
     .playing-img {
-      width: 200px;
+      width: 210px;
     }
 
     /* Desktop: show iPhone mockup, hide mobile card */
@@ -1289,9 +1299,24 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-16);
     }
 
-    /* Pull-up Kippi at full desktop scale: head ~120-130px */
+    /* Pull-up Kippi at 1024px+: still clearly smallest.
+       Left-align follows §C's 64px padding at this breakpoint. */
+    .seam-bc {
+      padding-left: 64px;
+    }
+
     .pullup-img {
-      height: 190px;
+      height: 115px;
+    }
+
+    .pullup-glow {
+      left: 64px;
+      width: 260px;
+    }
+
+    .pullup-ledge-shadow {
+      left: 64px;
+      width: 130px;
     }
 
     .hero-kippi-wrap {
