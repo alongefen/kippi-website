@@ -14,26 +14,20 @@ import Base from '../layouts/Base.astro';
   <main class="legal-main">
     <article class="legal-article">
 
-      <!--
-        FOUNDER REVIEW FLAG:
-        This is template legal copy for a pre-launch site that collects only email addresses.
-        Before go-live (and certainly before App Store submission), please:
-        1. Have a lawyer review this document.
-        2. Replace all [PLACEHOLDER] values below.
-        3. Confirm jurisdiction (currently: [JURISDICTION]).
-      -->
+      <!-- Pre-launch policy for the email-only waitlist site. A fuller, lawyer-reviewed
+           policy will replace this when the Kippi app (health data + payments) launches. -->
 
       <header class="legal-header">
         <p class="legal-label">Legal</p>
         <h1 class="legal-title font-display">Privacy Policy</h1>
-        <p class="legal-date">Last updated: [DATE] &mdash; <strong>DRAFT - REQUIRES FOUNDER AND LEGAL REVIEW BEFORE GO-LIVE</strong></p>
+        <p class="legal-date">Last updated: June 14, 2026</p>
       </header>
 
       <div class="legal-body">
 
         <h2>1. Who we are</h2>
         <p>
-          Kippi is operated by [COMPANY NAME], based in [CITY, COUNTRY] ("[JURISDICTION]").
+          Kippi is operated by Alon Gefen Technology ("Kippi," "we," or "us"), based in Kadima, Israel.
           You can reach us at <a href="mailto:hello@kippi.help">hello@kippi.help</a>.
         </p>
         <p>
@@ -44,29 +38,30 @@ import Base from '../layouts/Base.astro';
 
         <h2>2. What we collect</h2>
         <p>
-          At this time, the only personal data we collect is your <strong>email address</strong>,
-          submitted voluntarily when you join our waitlist.
+          When you join our waitlist, we collect two things: your <strong>email address</strong>
+          (which you enter yourself), and the web page that referred you to our site
+          (your browser's "referrer"), which helps us understand where people are hearing about Kippi.
         </p>
         <p>We do not collect:</p>
         <ul>
           <li>Your name</li>
           <li>Health or medical information</li>
           <li>Financial information</li>
-          <li>Device identifiers or tracking cookies</li>
-          <li>Any information you did not provide directly</li>
+          <li>Device identifiers, advertising IDs, or tracking cookies</li>
         </ul>
 
         <h2>3. Why we collect it</h2>
         <p>
-          We collect your email address for one purpose: to notify you when the Kippi app is available.
+          We use your email address for one purpose: to notify you when the Kippi app is available.
           We will not send you marketing emails beyond this launch notification without your explicit consent.
+          The referrer is used only in aggregate, to understand which channels bring people to Kippi.
         </p>
 
         <h2>4. Where we store it</h2>
         <p>
           Your email address is stored securely in Supabase, a cloud database service
           (see <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's privacy policy</a>).
-          Data is hosted in [SUPABASE REGION, e.g., US East].
+          Data is hosted in Supabase's Southeast Asia (Singapore) region.
           We do not store your data on any other third-party service.
         </p>
 
@@ -80,7 +75,7 @@ import Base from '../layouts/Base.astro';
         <p>
           We will retain your email address until the Kippi app launches and you have been notified,
           or until you request deletion - whichever comes first.
-          If the project does not launch within [TIMEFRAME, e.g., two years], we will delete all waitlist data.
+          If the project does not launch within 24 months, we will delete all waitlist data.
         </p>
 
         <h2>7. Your rights</h2>
@@ -95,13 +90,12 @@ import Base from '../layouts/Base.astro';
         <p>
           To exercise any of these rights, email us at
           <a href="mailto:hello@kippi.help">hello@kippi.help</a>
-          with the subject line "Data request." We will respond within [TIMEFRAME, e.g., 30 days].
+          with the subject line "Data request." We will respond within 30 days.
         </p>
 
         <h2>8. Cookies and tracking</h2>
         <p>
-          This site does not currently use cookies or any third-party analytics tracking.
-          [UPDATE THIS SECTION if analytics are added before launch.]
+          This site does not use cookies, advertising trackers, or any third-party analytics.
         </p>
 
         <h2>9. Children</h2>
