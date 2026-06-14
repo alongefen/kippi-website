@@ -23,13 +23,17 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
         <!-- HEADLINE - order 1 on mobile -->
         <div class="hero-copy-top">
+          <!-- Eyebrow: lowercase category label (Sage-PASS 2026-06-14). Renders uppercase
+               via the shared eyebrow style; must stay "binge eating recovery" - never
+               "Binge Eating Disorder" (that crosses into a clinical claim → fresh Sage pass). -->
+          <p class="hero-eyebrow" data-reveal>binge eating recovery</p>
           <h1 class="hero-headline font-display" data-reveal>
-            For when you can't stop eating&mdash;and you're tired of facing it alone.
+            When the urge hits, Kippi is already there.
           </h1>
         </div>
 
         <!-- KIPPI HERO - order 2 on mobile, right col on desktop -->
-        <div class="hero-kippi-wrap" aria-label="Kippi, seated and present">
+        <div class="hero-kippi-wrap" aria-label="Kippi, reaching up and present">
           <!-- Warm radial glow pool - strengthened so edges melt into cream -->
           <div class="kippi-glow" aria-hidden="true"></div>
           <!-- Secondary outer glow: wider, softer - kills the sticker silhouette -->
@@ -39,10 +43,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
           <!-- The character, breathing -->
           <div class="kippi-breathe">
             <img
-              src="/mascot/kippi-v2-hero-seated-cut.png"
-              alt="Kippi the hedgehog, seated and calm, waiting with you"
-              width="1286"
-              height="1483"
+              src="/mascot/hero-stand-3-cut.png"
+              alt="Kippi the hedgehog, standing and reaching up, here with you"
+              width="1087"
+              height="1563"
               loading="eager"
               fetchpriority="high"
               class="kippi-hero-img"
@@ -370,7 +374,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     order: 2;
     position: relative;
     width: 100%;
-    max-width: 175px;
+    max-width: 155px;
     align-self: center;
     display: flex;
     align-items: flex-end;
@@ -386,9 +390,22 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     gap: var(--space-4);
   }
 
+  /* Hero eyebrow - lowercase "binge eating recovery" category label, rendered as the
+     shared terracotta kicker (matches §B/§C eyebrows). Sage-PASS 2026-06-14. */
+  .hero-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    opacity: 0.7;
+    margin-bottom: var(--space-3);
+  }
+
   .hero-headline {
-    /* New headline is longer - clamp tighter on mobile so it stays 2 lines max, not 3.
-       Floor raised slightly to 26px; ceiling at 46px (was 54px for the shorter old headline). */
+    /* Headline (Option 2): short + punchy. Clamp keeps it tidy on mobile (2-3 lines)
+       and caps at 46px so it doesn't crowd the taller reaching-Kippi beside it. */
     font-size: clamp(26px, 6.5vw, 46px);
     line-height: 1.15;
     color: var(--text-primary);
@@ -458,15 +475,18 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .kippi-shadow {
+    /* Contact shadow under the feet. Tightened + deepened slightly vs the old seated
+       pose so the standing/reaching Kippi reads planted, not levitating (kept soft so
+       it doesn't weigh down the "alive/reaching" energy). */
     position: absolute;
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 54%;
-    height: 16px;
-    background: rgba(44, 30, 22, 0.34);
+    width: 46%;
+    height: 18px;
+    background: rgba(44, 30, 22, 0.42);
     border-radius: 50%;
-    filter: blur(8px);
+    filter: blur(9px);
     pointer-events: none;
     z-index: 1;
   }
@@ -483,7 +503,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   .kippi-hero-img {
     width: 100%;
-    max-width: 175px;
+    max-width: 155px;
     height: auto;
     display: block;
   }
@@ -1201,13 +1221,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       grid-column: 2;
       grid-row: 1 / 3;
       align-self: center;
-      max-width: 230px;
-      width: 230px;
+      max-width: 205px;
+      width: 205px;
       margin-bottom: 0;
     }
 
     .kippi-hero-img {
-      max-width: 230px;
+      max-width: 205px;
     }
 
     /* Section side margins widen on tablet */
@@ -1356,8 +1376,12 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     .hero-kippi-wrap {
-      max-width: 240px;
-      width: 240px;
+      max-width: 220px;
+      width: 220px;
+    }
+
+    .kippi-hero-img {
+      max-width: 220px;
     }
   }
 
