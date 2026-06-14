@@ -97,31 +97,32 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       </div>
     </section>
 
-    <!-- ==================== §C WHAT KIPPI DOES ==================== -->
+    <!-- ==================== §B/§C SEAM: pull-up Kippi ==================== -->
     <!--
-      Peeking Kippi pulls his head UP over the TOP edge of this section.
-      overflow: visible so the peek element bleeds above the section boundary.
-      The peek-wrap sits absolute at top:-N so only head + paws show above the line.
+      Centered on the boundary between §B and §C.
+      Paws/bottom edge sit ON the divider line; head + spines crest above into §B.
+      Uses a seam-anchor wrapper at the boundary so both sections can have overflow:hidden
+      without clipping Kippi. z-index above both sections; overflow:visible on the seam container.
     -->
+    <div class="seam-bc" aria-label="Kippi pulling himself up over the section ledge">
+      <div class="pullup-glow"       aria-hidden="true"></div>
+      <div class="pullup-ledge-shadow" aria-hidden="true"></div>
+      <div class="pullup-breathe">
+        <img
+          src="/mascot/kippi-v2-pullup-cut.png"
+          alt="Kippi gripping the ledge, peeking up curiously"
+          width="1201"
+          height="920"
+          loading="lazy"
+          class="pullup-img"
+        />
+      </div>
+    </div>
+
+    <!-- ==================== §C WHAT KIPPI DOES ==================== -->
     <section class="section-c" aria-label="What Kippi does">
 
-      <!-- Peeking Kippi: positioned to poke head over the top edge of §C -->
-      <div class="peek-anchor" aria-label="Kippi peeking over the edge, curious">
-        <div class="peek-glow" aria-hidden="true"></div>
-        <div class="peek-edge-shadow" aria-hidden="true"></div>
-        <div class="peek-breathe">
-          <img
-            src="/mascot/kippi-v2-peeking-cut.png"
-            alt="Kippi peeking over the top edge, curious"
-            width="871"
-            height="1599"
-            loading="lazy"
-            class="peek-img"
-          />
-        </div>
-      </div>
-
-      <div class="section-inner section-inner--split section-c-split">
+      <div class="section-inner section-inner--split">
 
         <div class="split-copy" data-reveal>
           <div class="section-c-label" aria-hidden="true">the companion</div>
@@ -142,14 +143,23 @@ import WaitlistForm from '../components/WaitlistForm.astro';
           </div>
         </div>
 
-        <!-- Real iPhone mockup with conversation-v1.png screenshot -->
-        <div class="split-visual" data-reveal aria-label="Kippi app on iPhone">
+        <!-- App screenshot: mobile card (phone) / iPhone mockup (desktop) -->
+        <div class="split-visual" data-reveal aria-label="Kippi app conversation">
+          <!-- Mobile: clean rounded card, no nested phone inside a phone -->
+          <div class="app-card-mobile">
+            <img
+              src="/conversation-v1.png"
+              alt="Kippi app: a warm conversation in progress"
+              width="1170"
+              height="2532"
+              loading="lazy"
+              class="app-card-screenshot"
+            />
+          </div>
+          <!-- Desktop: full iPhone mockup -->
           <div class="iphone-mockup">
-            <!-- Device outer shell -->
             <div class="iphone-shell">
-              <!-- Dynamic Island -->
               <div class="iphone-island" aria-hidden="true"></div>
-              <!-- Screenshot fills the screen area -->
               <div class="iphone-screen-area">
                 <img
                   src="/conversation-v1.png"
@@ -160,7 +170,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
                   class="iphone-screenshot"
                 />
               </div>
-              <!-- Home indicator -->
               <div class="iphone-home-indicator" aria-hidden="true"></div>
             </div>
           </div>
@@ -295,12 +304,19 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 </Base>
 
 <style>
+  /* ================================================================
+     KIPPI WEBSITE v6 — MOBILE-NATIVE STYLES
+     Mobile-first: base styles = phone (390px target).
+     Desktop upgrades via min-width: 720px and 1024px.
+     All touch targets >= 44px. Side gutters 20-24px on mobile.
+  ================================================================ */
+
   /* ==================== SITE HEADER ==================== */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: var(--space-5) var(--side-margin);
+    padding: 14px 20px;
     background-color: rgba(250, 245, 238, 0.93);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -315,43 +331,49 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.01em;
+    /* Tap target height */
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
   .wordmark:hover { color: var(--text-primary); }
 
   /* ==================== §A HERO ==================== */
+  /*
+    Mobile: stacked column — headline, Kippi, subcopy+form.
+    Kippi sized for phone: tasteful, not dominating.
+    Tight vertical rhythm; no awkward gaps.
+  */
   .section-hero {
     background-color: var(--bg-primary);
-    padding: var(--space-16) var(--side-margin) var(--space-16);
+    padding: 48px 20px 52px;
   }
 
-  /*
-    Mobile: flex column with explicit order
-    Desktop (>= 720px): CSS grid 2-column
-  */
   .hero-inner {
     max-width: var(--wide-max);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: 0;
     align-items: stretch;
   }
 
   .hero-copy-top {
     order: 1;
     width: 100%;
+    margin-bottom: 28px;
   }
 
   .hero-kippi-wrap {
     order: 2;
     position: relative;
     width: 100%;
-    /* v5: reduced from 420px mobile -- ~33% smaller */
-    max-width: 280px;
+    max-width: 220px;
     align-self: center;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    margin-bottom: 28px;
   }
 
   .hero-copy-bottom {
@@ -363,14 +385,15 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .hero-headline {
-    font-size: clamp(30px, 7vw, 54px);
+    /* Mobile: 28px min feels intentional at 390px, not cramped */
+    font-size: clamp(28px, 7.5vw, 54px);
     line-height: 1.12;
     color: var(--text-primary);
   }
 
   .hero-subcopy {
-    font-size: 18px;
-    line-height: 1.68;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--text-secondary);
     max-width: 560px;
   }
@@ -387,15 +410,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     margin-top: var(--space-3);
   }
 
-  /* ---- Hero Kippi grounding: transparent cutout on cream ---- */
-
-  /*
-    v5: Strengthened warm radial glow so the edges of the PNG melt into
-    the cream background rather than reading as a sharp cutout sticker.
-    Two layers:
-    - kippi-glow:       tighter, richer warm pool directly behind/under Kippi
-    - kippi-glow-outer: wide, very soft halo that bleeds further into the cream
-  */
+  /* ---- Hero Kippi grounding ---- */
   .kippi-glow {
     position: absolute;
     bottom: -10px;
@@ -415,7 +430,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     animation: glow-breathe-center 5s ease-in-out infinite alternate;
   }
 
-  /* Outer feathered halo: the key anti-sticker layer */
   .kippi-glow-outer {
     position: absolute;
     bottom: -20px;
@@ -434,17 +448,16 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     animation: glow-breathe-center 6s ease-in-out infinite alternate-reverse;
   }
 
-  /* Contact shadow: rests flush at the very bottom of the image */
   .kippi-shadow {
     position: absolute;
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     width: 54%;
-    height: 18px;
-    background: rgba(44, 30, 22, 0.38);
+    height: 16px;
+    background: rgba(44, 30, 22, 0.34);
     border-radius: 50%;
-    filter: blur(9px);
+    filter: blur(8px);
     pointer-events: none;
     z-index: 1;
   }
@@ -460,9 +473,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .kippi-hero-img {
-    /* v5: mobile max-width shrunk ~33% vs v4 (was 420px) */
     width: 100%;
-    max-width: 280px;
+    max-width: 220px;
     height: auto;
     display: block;
   }
@@ -476,7 +488,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §B THE LOOP ==================== */
   .section-b {
     background-color: var(--bg-surface);
-    padding: 68px var(--side-margin) 72px;
+    /* Mobile: comfortable top/bottom breathing room */
+    padding: 56px 20px 64px;
     position: relative;
     overflow: hidden;
   }
@@ -530,22 +543,95 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     max-width: 680px;
   }
 
-  /* ==================== §C WHAT KIPPI DOES ==================== */
+  /* ==================== §B/§C SEAM: pull-up Kippi ==================== */
   /*
-    overflow: visible so peeking Kippi bleeds above the section top edge.
-    The peek-anchor is absolutely positioned; a pt-push creates room
-    so the copy doesn't sit under the peek element on mobile.
+    The seam-bc wrapper sits between §B and §C in the DOM flow.
+    It has zero height and overflow: visible so the character
+    bleeds both upward (into §B) and downward (into §C).
+    Centered horizontally. z-index: 30 clears both sections' content.
+    The image is 1201x920 (wider than tall): paws are at the bottom edge.
+    We render it at ~160px tall on mobile, ~190px on desktop.
+    translateY(-50%) centers it on the seam; we then shift up by half
+    the image height so paws land exactly on the boundary.
+    Because the image crops at the paws, bottom edge = paws = seam line.
   */
-  .section-c {
-    background-color: var(--bg-elevated);
-    padding: 68px var(--side-margin) 72px;
+  .seam-bc {
     position: relative;
+    height: 0;
     overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 30;
+    pointer-events: none;
   }
 
-  .section-c-split {
-    /* Ensure copy starts below the peek head on mobile */
-    padding-top: var(--space-12);
+  /* Warm soft glow on the ledge so Kippi is grounded */
+  .pullup-glow {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 360px;
+    height: 80px;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(196, 154, 60, 0.28) 0%,
+      rgba(194, 115, 72, 0.12) 45%,
+      transparent 72%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: glow-breathe 5s ease-in-out infinite alternate;
+  }
+
+  /* Faint shadow under the paws on the ledge */
+  .pullup-ledge-shadow {
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 10px;
+    background: rgba(44, 30, 22, 0.20);
+    border-radius: 50%;
+    filter: blur(6px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .pullup-breathe {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: kippi-breathe 5.4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    transform-origin: bottom center;
+  }
+
+  /* Mobile: head ~140px tall. Image is 1201x920; head occupies ~top 55%.
+     At 140px rendered height, head reads ~77px, which is right in the
+     tasteful 80-120px head range on mobile. Full width is 140*(1201/920) = 183px. */
+  .pullup-img {
+    height: 140px;
+    width: auto;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pullup-glow    { animation: none; opacity: 0.85; }
+    .pullup-breathe { animation: none; }
+  }
+
+  /* ==================== §C WHAT KIPPI DOES ==================== */
+  .section-c {
+    background-color: var(--bg-elevated);
+    /* Mobile: extra top padding so the pull-up Kippi (which overflows upward)
+       doesn't visually crowd the section headline. He bleeds from above via seam-bc. */
+    padding: 72px 20px 56px;
+    position: relative;
+    overflow: visible;
   }
 
   .section-c-label {
@@ -563,111 +649,60 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     margin-bottom: var(--space-6);
   }
 
-  /* ---- Peeking Kippi: head over the top ledge of §C ---- */
-  /*
-    peek-anchor sits absolute at top:0 of section-c.
-    Negative translateY pulls most of the image ABOVE the section edge.
-    Only the head and top-of-paws remain visible above the cream/elevated boundary.
-    The element must be above z-index of §B content but below header (z-index: 100).
-  */
-  .peek-anchor {
-    position: absolute;
-    top: 0;
-    /* Offset to the right third of the section */
-    right: clamp(48px, 12vw, 200px);
-    /* Actual rendered height of the peek character */
-    width: 100px;
-    height: 140px;
-    /* Pull most of the image above the section boundary */
-    transform: translateY(-70%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    z-index: 20;
-    pointer-events: none;
-  }
-
-  /* Warm glow pool on the ledge edge */
-  .peek-glow {
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240%;
-    height: 140%;
-    background: radial-gradient(
-      ellipse 70% 55% at 50% 68%,
-      rgba(196, 154, 60, 0.22) 0%,
-      rgba(194, 115, 72, 0.10) 42%,
-      transparent 70%
-    );
-    pointer-events: none;
-    z-index: 0;
-    animation: glow-breathe 5s ease-in-out infinite alternate;
-  }
-
-  /* Soft contact shadow on the section top edge -- grounds the peek */
-  .peek-edge-shadow {
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 8px;
-    background: rgba(44, 30, 22, 0.18);
-    border-radius: 50%;
-    filter: blur(5px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .peek-breathe {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    animation: kippi-breathe 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    transform-origin: bottom center;
-  }
-
-  .peek-img {
-    width: 90px;
-    height: auto;
-    display: block;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .peek-glow    { animation: none; opacity: 0.8; }
-    .peek-breathe { animation: none; }
-  }
-
   /* ==================== §C SPLIT LAYOUT ==================== */
   .section-inner--split {
     max-width: var(--wide-max);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-12);
+    gap: var(--space-10);
     align-items: flex-start;
   }
 
   .split-copy {
     flex: 1;
+    width: 100%;
   }
 
   .split-visual {
     width: 100%;
-    max-width: 260px;
     align-self: center;
   }
 
-  /* ==================== iPhone Mockup ==================== */
+  /* ==================== App screenshot: mobile card vs desktop mockup ==================== */
   /*
-    Clean modern device frame: dark bezel, dynamic island, home indicator.
-    Screenshot fills the screen area. Device drop-shadow gives depth.
+    On mobile: show a clean rounded card - the screenshot at near-full column width.
+    A device-inside-a-device at 390px looks nested and awkward.
+    On desktop: show the full iPhone mockup.
   */
+
+  /* Mobile card: visible on mobile, hidden on desktop */
+  .app-card-mobile {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: #1a1a1e;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.18),
+      0 1px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  .app-card-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Show top portion of the conversation */
+    object-fit: cover;
+    object-position: top;
+    /* Limit height so the card doesn't go full-page */
+    max-height: 420px;
+  }
+
+  /* iPhone mockup: hidden on mobile, shown on desktop */
   .iphone-mockup {
+    display: none;
     width: 100%;
     max-width: 220px;
     margin: 0 auto;
@@ -687,7 +722,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     overflow: hidden;
   }
 
-  /* Dynamic Island pill */
   .iphone-island {
     position: absolute;
     top: 14px;
@@ -700,13 +734,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     z-index: 4;
   }
 
-  /* The inner screen area: screenshot fills it edge-to-edge */
   .iphone-screen-area {
     position: relative;
     border-radius: 34px;
     overflow: hidden;
     background: #000;
-    /* 9:19.5 iPhone aspect ratio */
     aspect-ratio: 9 / 19.5;
   }
 
@@ -718,7 +750,6 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     display: block;
   }
 
-  /* Home indicator bar at the bottom */
   .iphone-home-indicator {
     display: flex;
     justify-content: center;
@@ -736,14 +767,12 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     border-radius: 2px;
   }
 
-  /* ==================== §D RELAPSE IS RECOVERY ==================== -->
+  /* ==================== §D RELAPSE IS RECOVERY ==================== */
   .section-d {
     position: relative;
-    padding: 80px var(--side-margin) 88px;
+    padding: 64px 20px 72px;
     overflow: hidden;
   }
-
-  /* No cream-to-dark bridge div needed -- §D follows §C directly */
 
   .relapse-candle-glow {
     position: absolute;
@@ -817,7 +846,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .relapse-close {
     font-family: 'Fraunces', serif;
     font-variation-settings: 'WONK' 0.6, 'opsz' 20;
-    font-size: 20px !important;
+    font-size: 19px !important;
     font-weight: 400;
     font-style: italic;
     color: #7A9E6E !important;
@@ -832,19 +861,21 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .bridge--to-cream {
-    height: 80px;
+    height: 64px;
     background: linear-gradient(180deg, #1C1410 0%, var(--bg-primary) 100%);
   }
 
-  /* ==================== §E GROUNDED -- with playing Kippi ==================== */
+  /* ==================== §E GROUNDED -- playing Kippi ==================== */
   .section-e {
     background-color: var(--bg-primary);
-    padding: 88px var(--side-margin);
+    padding: 60px 20px 64px;
   }
 
   .split-visual--playing {
     position: relative;
-    max-width: 240px;
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -892,8 +923,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     transform-origin: bottom center;
   }
 
+  /* Mobile: 160px - tasteful, not overwhelming */
   .playing-img {
-    width: 200px;
+    width: 160px;
     height: auto;
     display: block;
   }
@@ -906,7 +938,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §F CLOSING WAITLIST ==================== */
   .section-f {
     background-color: var(--bg-surface);
-    padding: 88px var(--side-margin) var(--space-20);
+    padding: 64px 20px 56px;
     position: relative;
     overflow: hidden;
   }
@@ -938,8 +970,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .closing-subcopy {
-    font-size: 18px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--text-secondary);
     margin-top: var(--space-4);
   }
@@ -956,7 +988,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .site-footer {
     background-color: var(--bg-elevated);
     border-top: 1px solid var(--border-subtle);
-    padding: var(--space-12) var(--side-margin) var(--space-10);
+    padding: var(--space-10) 20px;
   }
 
   .footer-inner {
@@ -991,13 +1023,17 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .footer-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 
   .footer-links a {
     font-size: 15px;
     color: var(--text-tertiary);
     text-decoration: none;
+    /* Tap target */
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
   .footer-links a:hover { color: var(--text-secondary); }
 
@@ -1028,19 +1064,20 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     margin: 0 auto;
   }
 
+  /* Mobile: floor at 22px so headlines read at phone size */
   .section-headline {
-    font-size: clamp(24px, 4vw, 38px);
+    font-size: clamp(22px, 5.5vw, 38px);
     line-height: 1.2;
     color: var(--text-primary);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-6);
   }
 
   .section-headline--xl {
-    font-size: clamp(30px, 5.5vw, 50px);
+    font-size: clamp(26px, 6.5vw, 50px);
   }
 
   .section-headline--lg {
-    font-size: clamp(26px, 4.5vw, 42px);
+    font-size: clamp(24px, 5.5vw, 42px);
   }
 
   .body-text {
@@ -1049,9 +1086,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     gap: var(--space-5);
   }
 
+  /* Body text: 16px minimum on mobile per anti-vibe rule */
   .body-text p {
-    font-size: 18px;
-    line-height: 1.68;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--text-secondary);
     max-width: 640px;
   }
@@ -1059,7 +1097,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .landing-line-light {
     font-family: 'Fraunces', serif;
     font-variation-settings: 'WONK' 0.6, 'opsz' 20;
-    font-size: 19px !important;
+    font-size: 18px !important;
     font-weight: 400;
     font-style: italic;
     color: var(--text-primary) !important;
@@ -1082,7 +1120,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     100% { transform: scale(1.015); }
   }
 
-  /* ==================== DESKTOP LAYOUT ==================== */
+  /* ================================================================
+     DESKTOP LAYOUT (>= 720px)
+     Tablet and up: restore the designed desktop proportions.
+     Keep mobile base intact; override only what changes.
+  ================================================================ */
   @media (min-width: 720px) {
     .site-header {
       padding: var(--space-5) var(--space-10);
@@ -1107,6 +1149,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       grid-column: 1;
       grid-row: 1;
       align-self: end;
+      margin-bottom: 0;
     }
 
     .hero-copy-bottom {
@@ -1121,16 +1164,20 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       grid-column: 2;
       grid-row: 1 / 3;
       align-self: center;
-      /* v5: desktop reduced from 460px to ~310px (~33% smaller) */
       max-width: 310px;
       width: 310px;
+      margin-bottom: 0;
+    }
+
+    .hero-subcopy {
+      font-size: 18px;
     }
 
     .kippi-hero-img {
       max-width: 310px;
     }
 
-    /* Sections: wider side margins on desktop */
+    /* Section side margins widen on tablet */
     .section-b,
     .section-c,
     .section-d,
@@ -1140,20 +1187,25 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-10);
     }
 
-    /* §C: no extra top padding needed on desktop -- peek is positioned */
-    .section-c-split {
-      padding-top: 0;
+    /* Pull-up Kippi: grow on desktop */
+    .pullup-img {
+      height: 175px;
     }
 
-    /* Peeking Kippi scales up slightly on desktop */
-    .peek-anchor {
-      width: 120px;
-      height: 160px;
-      right: clamp(80px, 14vw, 260px);
+    .pullup-glow {
+      width: 480px;
+      height: 100px;
     }
 
-    .peek-img {
-      width: 110px;
+    .pullup-ledge-shadow {
+      width: 240px;
+      height: 12px;
+    }
+
+    /* §C: restore vertical padding (no need for extra top now that
+       the seam is a separate DOM element) */
+    .section-c {
+      padding-top: 56px;
     }
 
     /* §C and §E: side-by-side split */
@@ -1170,14 +1222,34 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     .split-visual {
       flex: 0 0 260px;
       align-self: auto;
+      max-width: 260px;
     }
 
     .split-visual--playing {
       flex: 0 0 220px;
+      max-width: 220px;
+    }
+
+    .playing-img {
+      width: 200px;
+    }
+
+    /* Desktop: show iPhone mockup, hide mobile card */
+    .app-card-mobile {
+      display: none;
     }
 
     .iphone-mockup {
+      display: block;
       max-width: 200px;
+    }
+
+    .body-text p {
+      font-size: 18px;
+    }
+
+    .closing-subcopy {
+      font-size: 18px;
     }
 
     .site-footer {
@@ -1210,8 +1282,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-right: var(--space-16);
     }
 
-    .peek-anchor {
-      right: clamp(120px, 16vw, 320px);
+    /* Pull-up Kippi at full desktop scale: head ~120-130px */
+    .pullup-img {
+      height: 190px;
     }
 
     .hero-kippi-wrap {

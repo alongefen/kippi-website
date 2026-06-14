@@ -72,16 +72,31 @@ const { id = "waitlist-form" } = Astro.props;
     white-space: nowrap;
   }
 
+  /*
+    Mobile-first: stack email + button vertically for full-width tap targets.
+    On tablet+ (>= 480px): restore the side-by-side row layout.
+  */
   .form-row {
     display: flex;
+    flex-direction: column;
     gap: var(--space-3);
-    flex-wrap: wrap;
     align-items: stretch;
   }
 
   .input-wrap {
-    flex: 1;
-    min-width: 200px;
+    width: 100%;
+  }
+
+  @media (min-width: 480px) {
+    .form-row {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .input-wrap {
+      flex: 1;
+      min-width: 0;
+    }
   }
 
   input[type="email"] {
@@ -111,12 +126,14 @@ const { id = "waitlist-form" } = Astro.props;
   .btn-primary {
     position: relative;
     height: 56px;
-    min-width: 160px;
+    /* Mobile: full-width button for easy tapping */
+    width: 100%;
+    min-width: 0;
     padding: 0 var(--space-6);
     background: var(--accent-primary);
     color: var(--text-inverse);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     border: none;
     border-radius: var(--radius-xl);
@@ -124,6 +141,14 @@ const { id = "waitlist-form" } = Astro.props;
     transition: background-color 200ms var(--ease-calm), opacity 200ms var(--ease-calm);
     white-space: nowrap;
     min-height: 44px;
+  }
+
+  @media (min-width: 480px) {
+    .btn-primary {
+      width: auto;
+      min-width: 160px;
+      font-size: 18px;
+    }
   }
   .btn-primary:hover { background: var(--accent-primary-pressed); }
   .btn-primary:active { background: var(--accent-primary-pressed); }
