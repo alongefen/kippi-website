@@ -347,6 +347,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .section-hero {
     background-color: var(--bg-primary);
     padding: 48px 20px 52px;
+    /* Clip decorative glows (kippi-glow, kippi-glow-outer) that extend beyond viewport */
+    overflow: hidden;
   }
 
   .hero-inner {
@@ -417,6 +419,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     left: 50%;
     transform: translateX(-50%);
     width: 160%;
+    max-width: 340px;
     height: 150%;
     background: radial-gradient(
       ellipse 65% 58% at 50% 62%,
@@ -436,6 +439,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     left: 50%;
     transform: translateX(-50%);
     width: 240%;
+    max-width: 380px;
     height: 220%;
     background: radial-gradient(
       ellipse 55% 50% at 50% 65%,
@@ -869,6 +873,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   .section-e {
     background-color: var(--bg-primary);
     padding: 60px 20px 64px;
+    /* Clip playing-glow (width: 160% of its container) that could overflow on mobile */
+    overflow: hidden;
   }
 
   .split-visual--playing {
@@ -887,6 +893,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     left: 50%;
     transform: translateX(-50%);
     width: 160%;
+    max-width: 320px;
     height: 110%;
     background: radial-gradient(
       ellipse 65% 55% at 50% 60%,
