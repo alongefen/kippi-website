@@ -585,6 +585,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     justify-content: flex-start;
     align-items: flex-end;
     position: relative;
+    /* Anchor the image's BOTTOM (paws) to the seam line and rise UP into §B's
+       climbing zone — without this the zero-height row lets the image hang
+       downward over §C's eyebrow/headline. */
+    transform: translateY(-100%);
   }
 
   /* Warm soft glow on the ledge so Kippi is grounded */
@@ -1365,10 +1369,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
      Only here is it safe to restore the tighter §B bottom padding.
   ================================================================ */
   @media (min-width: 1100px) {
-    /* Kippi is in the left margin, text starts at x ~215px+ — no collision.
-       Restore the original comfortable bottom padding (no extra clearance needed). */
+    /* Kippi now crests UP into §B's bottom (paws on the seam, head above), aligned
+       to the content column — so the climbing-zone clearance is needed here too,
+       sized for the 115px desktop Kippi + breathing room. */
     .section-b {
-      padding-bottom: 64px;
+      padding-bottom: 150px;
     }
   }
 </style>
