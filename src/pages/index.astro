@@ -492,8 +492,9 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   /* ==================== §B THE LOOP ==================== */
   .section-b {
     background-color: var(--bg-surface);
-    /* Mobile: comfortable top/bottom breathing room */
-    padding: 56px 20px 64px;
+    /* Mobile: comfortable top breathing room; large bottom = the pull-up Kippi's
+       "climbing zone" so his head crests into empty cream, never over the copy. */
+    padding: 56px 20px 120px;
     position: relative;
     overflow: hidden;
   }
@@ -1202,6 +1203,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
       padding-left: 40px;
     }
 
+    /* Climbing zone clears the taller (110px) Kippi at this breakpoint */
+    .section-b {
+      padding-bottom: 132px;
+    }
+
     .pullup-img {
       height: 110px;
     }
@@ -1303,6 +1309,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
        Left-align follows §C's 64px padding at this breakpoint. */
     .seam-bc {
       padding-left: 64px;
+    }
+
+    /* Climbing zone clears the 115px Kippi at this breakpoint */
+    .section-b {
+      padding-bottom: 138px;
     }
 
     .pullup-img {
