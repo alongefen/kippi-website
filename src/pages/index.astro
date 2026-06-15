@@ -7,6 +7,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   <!-- ==================== HEADER ==================== -->
   <header class="site-header">
     <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
+    <!-- Live early-access link to the validation web app (try.kippi.help). -->
+    <a href="https://try.kippi.help" class="header-cta">Talk to Kippi</a>
   </header>
 
   <main>
@@ -325,6 +327,33 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-subtle);
+    /* Wordmark left, "Talk to Kippi" CTA right */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  /* Header CTA → live validation app. On-brand terracotta pill, >=44px tap target. */
+  .header-cta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-inverse);
+    background-color: var(--accent-primary);
+    text-decoration: none;
+    padding: 0 18px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-full);
+    transition: background-color 200ms var(--ease-calm);
+    white-space: nowrap;
+  }
+  .header-cta:hover {
+    background-color: var(--accent-primary-pressed);
+    color: var(--text-inverse);
   }
 
   .wordmark {
