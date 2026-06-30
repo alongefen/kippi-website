@@ -7,6 +7,8 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   <!-- ==================== HEADER ==================== -->
   <header class="site-header">
     <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
+    <!-- Live early-access link to the validation web app (try.kippi.help). -->
+    <a href="https://try.kippi.help" class="header-cta">Talk to Kippi</a>
   </header>
 
   <main>
@@ -66,6 +68,29 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
         </div>
 
+      </div>
+    </section>
+
+    <!-- ==================== §A2 TRY KIPPI NOW (early web access) ==================== -->
+    <!--
+      Founder-approved Option A copy (2026-06-27), Sage-cleared 2026-06-30
+      (marketing/content/drafts/2026-06-30-landing-try-kippi-copy.md).
+      Secondary path below the hero — the waitlist stays the primary CTA.
+      Vault build-guard: this copy is safe ONLY because the button links
+      DIRECTLY into try.kippi.help, where the crisis footer/modal live.
+      Do NOT reuse this copy on any surface that doesn't link straight into the tool.
+    -->
+    <section class="section-try" aria-label="Try Kippi now">
+      <div class="section-inner section-try-inner">
+        <h2 class="section-try-headline font-display" data-reveal>Try Kippi now</h2>
+        <p class="section-try-subtext" data-reveal>
+          The iPhone app is coming this summer. In the meantime, you can talk to Kippi
+          right now, on the web. No account, no sign-up. If you're in the middle of
+          something hard, or you just want to see what it's like, it's there.
+        </p>
+        <a href="https://try.kippi.help" class="section-try-cta" data-reveal>
+          Open the web version
+        </a>
       </div>
     </section>
 
@@ -325,6 +350,33 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-subtle);
+    /* Wordmark left, "Talk to Kippi" CTA right */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  /* Header CTA → live validation app. On-brand terracotta pill, >=44px tap target. */
+  .header-cta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-inverse);
+    background-color: var(--accent-primary);
+    text-decoration: none;
+    padding: 0 18px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-full);
+    transition: background-color 200ms var(--ease-calm);
+    white-space: nowrap;
+  }
+  .header-cta:hover {
+    background-color: var(--accent-primary-pressed);
+    color: var(--text-inverse);
   }
 
   .wordmark {
@@ -1129,6 +1181,55 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
   .section-headline--lg {
     font-size: clamp(24px, 5.5vw, 42px);
+  }
+
+  /* ==================== §A2 TRY KIPPI NOW ==================== */
+  /* Secondary path below the hero. Cream surface, centered, terracotta pill
+     (mirrors .header-cta) → try.kippi.help. Waitlist stays the primary CTA. */
+  .section-try {
+    background-color: var(--bg-primary);
+    padding: 40px 20px 48px;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .section-try-inner {
+    max-width: 560px;
+  }
+
+  .section-try-headline {
+    font-size: clamp(22px, 5vw, 32px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-try-subtext {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto var(--space-5);
+  }
+
+  .section-try-cta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-inverse);
+    background-color: var(--accent-primary);
+    text-decoration: none;
+    padding: 0 28px;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-full);
+    transition: background-color 200ms var(--ease-calm);
+  }
+  .section-try-cta:hover {
+    background-color: var(--accent-primary-pressed);
+    color: var(--text-inverse);
   }
 
   .body-text {
