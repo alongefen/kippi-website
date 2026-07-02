@@ -6,6 +6,16 @@ Built with Astro. Deploys to Vercel or Netlify. Stores waitlist emails in Supaba
 
 ---
 
+## Live infrastructure (current — went live 2026-06-14)
+
+- **Host:** Vercel — project `kippi-website`, team `alon-gefens-projects` (account `alongefen`). **Auto-deploys from GitHub `main`** (push → production).
+- **Domain/DNS:** registrar **Porkbun**. Records: apex `kippi.help A → 76.76.21.21`, `www CNAME → cname.vercel-dns.com` (plus a leftover `*.kippi.help → pixie.porkbun.com` wildcard). `try.kippi.help` points at the separate `kippi-validation` Vercel project. SSL = Let's Encrypt via Vercel (auto-renews).
+- **Porkbun API:** DNS has a working API (`api.porkbun.com/api/json/v3`, apikey+secretapikey in the POST body; the per-domain "API ACCESS" toggle must be ON). **No email-forwarding API** (that endpoint 404s — forwarding is dashboard-only); `hello@kippi.help` forwarding is still a manual toggle.
+- **Legal pages:** operator **Alon Gefen Technology** (Kadima, Israel), Israeli governing law; waitlist emails stored in Supabase **Singapore** region.
+- **Known open items:** `www`→apex redirect unset (canonical tags cover SEO).
+
+---
+
 ## Local development
 
 **Prerequisites:** Node.js 22+, npm 10+.
