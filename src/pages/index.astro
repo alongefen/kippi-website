@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import WaitlistForm from '../components/WaitlistForm.astro';
 ---
 
-<Base>
+<Base isHome={true}>
   <!-- ==================== HEADER ==================== -->
   <header class="site-header">
     <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
@@ -25,10 +25,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
         <!-- HEADLINE - order 1 on mobile -->
         <div class="hero-copy-top">
-          <!-- Eyebrow: lowercase category label (Sage-PASS 2026-06-14). Renders uppercase
-               via the shared eyebrow style; must stay "binge eating recovery" - never
-               "Binge Eating Disorder" (that crosses into a clinical claim → fresh Sage pass). -->
-          <p class="hero-eyebrow" data-reveal>binge eating recovery</p>
+          <!-- Eyebrow: lowercase category label (Sage-cleared #0703-1001, SEO/AIO pass —
+               was "binge eating recovery", now the Tier 1 keyword "binge eating support app").
+               Renders uppercase via the shared eyebrow style; must stay "support app" wording -
+               never "Binge Eating Disorder" (that crosses into a clinical claim → fresh Sage pass). -->
+          <p class="hero-eyebrow" data-reveal>binge eating support app</p>
           <h1 class="hero-headline font-display" data-reveal>
             When the urge hits, Kippi is already there.
           </h1>
@@ -279,6 +280,112 @@ import WaitlistForm from '../components/WaitlistForm.astro';
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ==================== §E2 QUESTIONS ABOUT KIPPI (FAQ) ==================== -->
+    <!--
+      SEO/AIO FAQ. Static, always-open Q+A pairs (no JS) so crawlers and AI
+      assistants read the full content. Copy is safety-locked (Sage ✅ #0703-1001,
+      draft: marketing/content/drafts/2026-07-03-seo-structured-data.md §4) — do not
+      reword. Machine-readable twin lives in the JSON-LD FAQPage in Base.astro.
+      Warm cream surface; <h2> keyword-light per the draft (keywords live in the questions).
+    -->
+    <section class="section-faq" aria-label="Questions about Kippi">
+      <div class="section-inner">
+        <h2 class="section-headline section-headline--lg font-display" data-reveal>
+          Questions about Kippi
+        </h2>
+
+        <div class="faq-list">
+          <div class="faq-item" data-reveal>
+            <h3 class="faq-question">What does Kippi actually do?</h3>
+            <div class="faq-answer">
+              <p>
+                Kippi is a warm AI companion for binge eating urges. You open the app and it is
+                already there — a small message waiting. You do not have to know what to say. You
+                just talk, and it stays with you while the feeling rises and falls.
+              </p>
+              <p>
+                It does not try to fix anything. It does not log food or count calories. It does
+                not have a streak that resets when you slip. It just stays.
+              </p>
+              <p>
+                And if you open it after a hard night — not before, but after — that door is just
+                as open.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <h3 class="faq-question">How is this different from other apps?</h3>
+            <div class="faq-answer">
+              <p>
+                Most apps for binge eating are built for reflection — logging after the fact,
+                filling in forms, adding meals to a tracker. By then, the moment has already
+                passed. Kippi is built for the window: the 20 to 30 minutes when the urge is
+                actually happening.
+              </p>
+              <p>
+                There are no streaks in Kippi. No number that resets. Slipping back is a normal
+                part of the arc for binge eating — clinically expected, not a verdict. "I just
+                binged" is a first-class door on the home screen, not a confession box.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <h3 class="faq-question">Is this based on real evidence, or just vibes?</h3>
+            <div class="faq-answer">
+              <p>
+                Urge surfing — the core mechanic — is a technique from DBT (Dialectical Behavior
+                Therapy), used in evidence-based treatment for binge eating. The idea: an urge is
+                like a wave. It rises, peaks, and falls — usually within twenty to thirty minutes.
+                You do not have to defeat it. You just have to get to the other side.
+              </p>
+              <p>
+                Kippi also does not have streaks, because CBT-E (the gold-standard clinical
+                treatment for binge eating disorder) is clear that relapse is a normal part of
+                recovery, not a failure.
+              </p>
+              <p>
+                It is not therapy. It will not pretend to be. It is a companion for the moment —
+                built on the things that actually work.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <h3 class="faq-question">Does Kippi track food, calories, or weight?</h3>
+            <div class="faq-answer">
+              <p>
+                No. Never. There is no logging, no tracking, no numbers of any kind. Research is
+                consistent that calorie tracking and food logging worsen binge eating for many
+                people. Kippi does not do any of that.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <h3 class="faq-question">What if I need more than an app right now?</h3>
+            <div class="faq-answer">
+              <!-- Crisis lines identical to the Sage-locked footer. Do not alter numbers. -->
+              <p>
+                Kippi is a companion — not an emergency service, and not a substitute for
+                professional help. If you are in crisis, struggling to stay safe, or thinking about
+                harming yourself, please reach out now. In the US: call or text
+                <a href="tel:988" class="crisis-link">988</a>, or call ANAD at
+                <a href="tel:8883757767" class="crisis-link">888-375-7767</a>. Outside the US: your
+                local emergency services.
+              </p>
+              <p>
+                If you are looking for eating disorder treatment, ANAD (888-375-7767) can help
+                connect you with support and a provider. A doctor or licensed therapist is the
+                right place to start for treatment.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1038,6 +1145,62 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     .playing-breathe { animation: none; }
   }
 
+  /* ==================== §E2 QUESTIONS ABOUT KIPPI (FAQ) ==================== */
+  /* Cream surface, matches §E above it. Unhurried rhythm — generous gaps between
+     Q+A pairs, hairline dividers echoing .section-b-divider. Answer body reuses the
+     .body-text scale/color so it reads native to the rest of the page. */
+  .section-faq {
+    background-color: var(--bg-primary);
+    padding: 60px 20px 64px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .section-faq .section-headline {
+    margin-bottom: var(--space-10);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .faq-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* First item sits directly under the headline — no double rule/gap above it. */
+  .faq-item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .faq-question {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 24;
+    font-weight: 400;
+    font-size: clamp(19px, 4.5vw, 24px);
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  .faq-answer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .faq-answer p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 640px;
+  }
+
   /* ==================== §F CLOSING WAITLIST ==================== */
   .section-f {
     background-color: var(--bg-surface);
@@ -1418,6 +1581,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     }
 
     .body-text p {
+      font-size: 18px;
+    }
+
+    .faq-answer p {
       font-size: 18px;
     }
 
