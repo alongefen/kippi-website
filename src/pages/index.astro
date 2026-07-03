@@ -1352,11 +1352,13 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     gap: var(--space-4);
     opacity: 0;
     transition: opacity 280ms var(--ease-calm);
-    padding-top: var(--space-4); /* answer breathes below the question when open */
+    /* padding lives in the [open] state only — otherwise it keeps a ~16px track
+       in the collapsed grid and folded rows never fully reach 0 (Lens nit). */
   }
 
   .faq-item[open] > .faq-answer-wrap > .faq-answer {
     opacity: 1;
+    padding-top: var(--space-4); /* answer breathes below the question when open */
     padding-bottom: var(--space-2); /* air before the next hairline */
   }
 
@@ -1863,6 +1865,11 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     if (!summary) return;
     summary.addEventListener('click', (event) => {
       if (!item.open) return; // opening — let native <details> + CSS handle it
+      // Reduced motion: the collapse transition is disabled in CSS, so no
+      // transitionend would ever fire and the row would wedge open forever.
+      // Let native <details> close instantly — matches the reduced-motion intent.
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (item.classList.contains('is-closing')) return; // a close is already animating
       event.preventDefault(); // closing — animate first, then remove [open]
       item.classList.add('is-closing');
       const answerWrap = item.querySelector('.faq-answer-wrap');
@@ -1871,12 +1878,10 @@ import WaitlistForm from '../components/WaitlistForm.astro';
         item.open = false;
         return;
       }
-      const done = () => {
+      answerWrap.addEventListener('transitionend', () => {
         item.open = false;
         item.classList.remove('is-closing');
-        answerWrap.removeEventListener('transitionend', done);
-      };
-      answerWrap.addEventListener('transitionend', done, { once: true });
+      }, { once: true });
     });
   });
 </script>
