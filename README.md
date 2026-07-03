@@ -4,6 +4,10 @@ Static marketing and waitlist site for [kippi.help](https://kippi.help).
 
 Built with Astro. Deploys to Vercel or Netlify. Stores waitlist emails in Supabase.
 
+## Current state
+- **Live on kippi.help**, auto-deployed by Vercel on push to `main` (Vercel bot comments preview URLs on PRs; preview URLs are behind SSO/deployment-protection — verify prod after merge, not the preview).
+- **SEO/AIO live (2026-07-03, PR #4):** homepage-only JSON-LD `@graph` (SoftwareApplication + FAQPage + WebSite) injected in `Base.astro` via `set:html` (gated on the `isHome` prop / root path — do NOT let it render on `/privacy` or `/terms`); keyword title + long meta description in `Base.astro`; a visible static FAQ section in `index.astro` (`§E2`, between §E and §F). All FAQ/metadata copy is **safety-locked** (Sage-approved) — never reword it without a fresh Sage pass. Source spec lives in the business repo: `marketing/content/drafts/2026-07-03-seo-structured-data.md`.
+
 ---
 
 ## Live infrastructure (current — went live 2026-06-14)
