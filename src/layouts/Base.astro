@@ -4,14 +4,136 @@ export interface Props {
   description?: string;
   ogImage?: string;
   canonical?: string;
+  isHome?: boolean;
 }
 
 const {
-  title = "Kippi — A friend for the hard moment",
-  description = "When the urge comes, you don't have to be alone with it. Kippi is a friend that shows up in that window — before the loop closes, or after, without any judgment. Join the waitlist.",
+  title = "Kippi - App for Binge Eating Urges | No Judgment, No Streaks",
+  description = "Kippi is a warm AI companion for binge eating urges — there with you in the moment, not after. No food logging, no calorie tracking, no streaks that reset. Based on urge surfing, an evidence-based approach. Join the waitlist or try the web version now.",
   ogImage = "/og-image.png",
   canonical,
+  isHome = false,
 } = Astro.props;
+
+// JSON-LD structured data (SoftwareApplication + FAQPage + WebSite).
+// Homepage-only — rendered when isHome is true (index.astro passes isHome),
+// or on the root path. Copy is safety-locked (Sage ✅ #0703-1001); do not reword.
+const renderStructuredData = isHome || Astro.url.pathname === "/";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://kippi.help/#app",
+      "name": "Kippi",
+      "description": "Kippi is a warm AI companion for binge eating urges. It meets you in the moment — before or after — with no food logging, no calorie tracking, and no streaks. Based on urge surfing, an evidence-based approach from DBT. A wellness companion, not a substitute for professional help.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS, Web",
+      "url": "https://kippi.help",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "description": "Free waitlist; iPhone app coming summer 2026. Web version available now at try.kippi.help."
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kippi",
+        "url": "https://kippi.help",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@kippi.help",
+          "contactType": "customer support"
+        }
+      },
+      "keywords": "binge eating support, binge eating urge app, emotional eating app, urge surfing, no food logging, no calorie tracking, binge eating companion",
+      "inLanguage": "en",
+      "audience": {
+        "@type": "PeopleAudience",
+        "audienceType": "People experiencing binge eating urges seeking in-the-moment support"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kippi.help/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Kippi do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kippi is a warm AI companion that's there with you during a binge eating urge — in the moment, not after. You open the app and Kippi is already there. You talk, it stays with you while the feeling rises and falls. It does not log food, track calories, or use streaks. It is based on urge surfing, the evidence-based idea that an urge is like a wave: it rises, peaks, and falls — usually within 20 to 30 minutes. You do not have to defeat it. You just have to get to the other side. Kippi is a wellness companion, not a substitute for professional help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Kippi different from other binge eating apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most binge eating and eating disorder apps are designed for reflection — logging what you ate, filling in forms after the fact. Kippi is built for the moment before. It is there when the urge is happening, not after it. Kippi also has no streaks that reset when you slip. Clinically, relapse is a normal and expected part of recovery — not a failure. If the first thing you want to say is 'I just binged,' that is a first-class door, not a confession box. There is no food logging, no calorie tracking, and no judgment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Kippi based on any evidence-based approach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Kippi is built around urge surfing, a technique from DBT (Dialectical Behavior Therapy) that is used in evidence-based treatment for binge eating. The idea is that an urge — like a wave — rises, peaks, and naturally falls within about 20 to 30 minutes if you do not act on it. Kippi's AI companion helps you ride that window. The companion also draws on CBT-E (Cognitive Behavioral Therapy for Eating Disorders) principles, including relapse normalization. Kippi is a wellness companion, not a medical device or a replacement for therapy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Kippi track food, calories, or weight?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Kippi does not ask about food, calories, portions, weight, or body size — ever. There is no logging, no tracking, and no numbers of any kind. Research consistently shows that calorie counting and food tracking can worsen binge eating for many people. Kippi does not do any of that."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Kippi have streaks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Kippi has no streaks. Streaks that reset when you slip are clinically backwards for binge eating recovery — relapse is a normal and expected part of the recovery arc, not a failure. An app that resets everything you built when you slip becomes something you dread opening precisely when you need it most. Kippi stays open. Nothing resets."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Kippi available now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A web version of Kippi is available now at try.kippi.help — no account, no sign-up required. You can talk to Kippi right now, whether you are in the middle of something hard or just want to see what it is like. The iPhone app is coming in summer 2026. Join the waitlist at kippi.help to be the first to know when it is ready."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I am in crisis or need immediate help?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kippi is a wellness companion, not an emergency service. If you are in crisis, struggling to stay safe, or thinking about harming yourself, please reach out now. In the US, call or text 988 (Suicide and Crisis Lifeline), or call ANAD's eating disorders helpline at 888-375-7767. Outside the US, please contact your local emergency services."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kippi.help/#website",
+      "url": "https://kippi.help",
+      "name": "Kippi",
+      "description": "Binge eating support app — AI companion for urge moments",
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://kippi.help/#{search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+};
 
 const siteUrl = "https://kippi.help";
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
@@ -44,6 +166,11 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+  <!-- Structured data (JSON-LD): SoftwareApplication + FAQPage + WebSite. Homepage-only. -->
+  {renderStructuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )}
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
