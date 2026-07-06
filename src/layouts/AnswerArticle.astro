@@ -1,0 +1,203 @@
+---
+// Shared layout for /answers/ pages (SEO phase 2, plan: marketing/plans/2026-07-06-seo-aeo-phase2.md).
+// Copy on these pages is Sage-reviewed + founder-approved
+// (marketing/website/2026-07-06-answers-pages-copy.md) — ships verbatim; do not reword here.
+import Base from './Base.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  jsonLd: object;
+}
+
+const { title, description, canonical, jsonLd } = Astro.props;
+---
+
+<Base title={title} description={description} canonical={canonical}>
+  <header class="site-header">
+    <a href="/" class="wordmark" aria-label="Kippi home">Kippi</a>
+  </header>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <main class="answer-main">
+    <article class="answer-article">
+      <slot />
+    </article>
+  </main>
+
+  <footer class="site-footer-answer">
+    <!-- SAGE-LOCKED: verbatim FAQ Q7 wording (Sage ✅ #0703-1001; re-confirmed 2026-07-06 review). Do not alter. -->
+    <p class="footer-crisis-answer">
+      Kippi is a wellness companion, not an emergency service. If you are in crisis,
+      struggling to stay safe, or thinking about harming yourself, please reach out now.
+      In the US, call or text <a href="tel:988" class="crisis-link-answer">988</a> (Suicide and Crisis Lifeline),
+      or call ANAD's eating disorders helpline at
+      <a href="tel:8883757767" class="crisis-link-answer">888-375-7767</a>.
+      Outside the US, please contact your local emergency services.
+    </p>
+    <div class="footer-answer-nav">
+      <a href="/">Back to Kippi</a>
+      <span>&middot;</span>
+      <a href="/privacy">Privacy</a>
+      <span>&middot;</span>
+      <a href="/terms">Terms</a>
+      <span>&copy; 2026 Kippi</span>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .site-header {
+    padding: var(--space-6) var(--side-margin);
+  }
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 18;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .answer-main {
+    padding: var(--space-12) var(--side-margin) var(--space-20);
+    display: flex;
+    justify-content: center;
+  }
+
+  .answer-article {
+    max-width: var(--content-max);
+    width: 100%;
+  }
+
+  .answer-article :global(.answer-label) {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+
+  .answer-article :global(h1) {
+    font-size: clamp(30px, 5.5vw, 44px);
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .answer-article :global(.answer-lead) {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--text-primary);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .answer-article :global(h2) {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'WONK' 0.6, 'opsz' 24;
+    font-weight: 400;
+    font-size: clamp(22px, 3.5vw, 28px);
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-5);
+  }
+
+  .answer-article :global(h3) {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-2);
+  }
+
+  .answer-article :global(p),
+  .answer-article :global(li) {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+
+  .answer-article :global(li) {
+    margin-bottom: var(--space-3);
+  }
+
+  .answer-article :global(ul) {
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-5);
+  }
+
+  .answer-article :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .answer-article :global(a) {
+    color: var(--accent-secondary);
+  }
+
+  .answer-article :global(.kippi-fit) {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+  }
+  .answer-article :global(.kippi-fit p) {
+    margin-bottom: 0;
+  }
+
+  .site-footer-answer {
+    padding: var(--space-8) var(--side-margin);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+
+  .footer-crisis-answer {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-tertiary);
+  }
+
+  .crisis-link-answer {
+    color: var(--semantic-crisis);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .crisis-link-answer:hover { color: var(--semantic-crisis); }
+
+  .footer-answer-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .site-footer-answer a {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+  .site-footer-answer a:hover { color: var(--text-secondary); }
+
+  .site-footer-answer span {
+    font-size: 14px;
+    color: var(--text-tertiary);
+  }
+
+  @media (min-width: 720px) {
+    .site-header { padding: var(--space-8) var(--space-10); }
+    .answer-main { padding-left: var(--space-10); padding-right: var(--space-10); }
+  }
+</style>

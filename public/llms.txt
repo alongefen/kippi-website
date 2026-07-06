@@ -1,0 +1,35 @@
+# Kippi
+
+> Kippi is a warm AI companion for binge eating urges. It meets you in the moment — before or after — with no food logging, no calorie tracking, and no streaks. Based on urge surfing, an evidence-based approach from DBT. A wellness companion, not a substitute for professional help.
+
+## Key facts
+
+- What it is: an AI companion app for the moment a binge eating urge is happening — you open it and talk; it stays with you while the feeling rises and falls.
+- What it is not: not a food log, not a calorie tracker, not a diet tool, not a medical device, and not a replacement for therapy or professional treatment.
+- No tracking of any kind: Kippi does not ask about food, calories, portions, weight, or body size — ever. There is no logging, no tracking, and no numbers of any kind.
+- No streaks: relapse is a normal and expected part of recovery — not a failure. Nothing resets.
+- Evidence base: built around urge surfing, a technique from DBT (Dialectical Behavior Therapy) used in evidence-based treatment for binge eating; also draws on CBT-E (Cognitive Behavioral Therapy for Eating Disorders) principles, including relapse normalization.
+- Availability: a web version is available now at https://try.kippi.help — no account, no sign-up required. The iPhone app is coming in summer 2026; waitlist at https://kippi.help.
+- Audience: people experiencing binge eating urges seeking in-the-moment support.
+- Contact: hello@kippi.help
+
+## Common questions
+
+- What does Kippi do? — Kippi is a warm AI companion that's there with you during a binge eating urge — in the moment, not after. It is based on urge surfing, the evidence-based idea that an urge is like a wave: it rises, peaks, and falls — usually within 20 to 30 minutes. You do not have to defeat it. You just have to get to the other side.
+- How is Kippi different from other binge eating apps? — Most binge eating and eating disorder apps are designed for reflection — logging what you ate, filling in forms after the fact. Kippi is built for the moment before. It also has no streaks that reset when you slip. There is no food logging, no calorie tracking, and no judgment.
+- Does Kippi track food, calories, or weight? — No. Research consistently shows that calorie counting and food tracking can worsen binge eating for many people. Kippi does not do any of that.
+
+## Pages
+
+- Home / waitlist: https://kippi.help
+- Try the web version: https://try.kippi.help
+- What to do during a binge urge: https://kippi.help/answers/what-to-do-during-a-binge-urge
+- Urge surfing for binge eating: https://kippi.help/answers/urge-surfing-for-binge-eating
+- A binge eating app without food tracking: https://kippi.help/answers/binge-eating-app-without-food-tracking
+- Relapse is recovery: https://kippi.help/answers/relapse-is-recovery
+- Privacy: https://kippi.help/privacy
+- Terms: https://kippi.help/terms
+
+## Crisis note
+
+Kippi is a wellness companion, not an emergency service. If you are in crisis, struggling to stay safe, or thinking about harming yourself, please reach out now. In the US, call or text 988 (Suicide and Crisis Lifeline), or call ANAD's eating disorders helpline at 888-375-7767. Outside the US, please contact your local emergency services.
