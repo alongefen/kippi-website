@@ -45,6 +45,14 @@ const structuredData = {
           "@type": "ContactPoint",
           "email": "hello@kippi.help",
           "contactType": "customer support"
+        },
+        // Founder entity link (plan B2, 2026-07-06): personal profiles belong on the founder
+        // Person, not Organization sameAs. TikTok deliberately deferred — handle in flux
+        // (@alon.gefen → @alonrecovers when available); add it once it settles.
+        "founder": {
+          "@type": "Person",
+          "name": "Alon Gefen",
+          "sameAs": ["https://www.instagram.com/alonrecovers/"]
         }
       },
       "keywords": "binge eating support, binge eating urge app, emotional eating app, urge surfing, no food logging, no calorie tracking, binge eating companion",
